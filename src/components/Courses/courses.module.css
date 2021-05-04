@@ -1,0 +1,13 @@
+.course_box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px 0;
+    background-color: #F1F5FC;
+    border-radius: 20px;
+}
+
+.course_img {
+    width: 40px;
+    height: 40px;
+}

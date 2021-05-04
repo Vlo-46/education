@@ -1,0 +1,28 @@
+.studentImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student {
+    display: flex;
+    align-items: center;
+}
+
+.student span {
+    font-size: small;
+    padding-left: 10px;
+}
+
+.statusAccess {
+    cursor: pointer;
+}
+
+.rateBox {
+    width: 200px;
+}
+
+.rateBox img {
+    padding-left: 8px;
+}

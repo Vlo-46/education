@@ -1,0 +1,35 @@
+.banner {
+    width: 100%;
+    background-position: center;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    height: 450px;
+}
+
+.bannerTitle {
+    color: #061358;
+    font-size: 40px;
+}
+
+.subTitle {
+    font-size: 24px;
+}
+
+.bannerBtn {
+    background-color: #0B2E99;
+    color: #fff;
+}
+
+.bannerBtn:hover {
+    color: #fff;
+}
+
+.statistics {
+    background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
+    width: 270px;
+    border-radius: 15px;
+    padding: 20px 15px;
+    color: #0B2E99;
+    float: right;
+}

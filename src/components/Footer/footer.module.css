@@ -1,0 +1,44 @@
+.bottomBorder {
+    height: 1px;
+    width: 50px;
+    background-color: #fff;
+    margin-top: 4px;
+    border-radius: 0 5px 5px 0;
+}
+
+.footer ul {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.input {
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.sendBtn {
+    position: absolute;
+    padding: 10px;
+    right: 5px;
+    top: 1px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #000D83;
+    border-radius: 50%;
+}
+
+.social_icon {
+    width: 23px;
+    height: 22px;
+}

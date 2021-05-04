@@ -1,0 +1,14 @@
+.imgBox {
+    display: flex;
+    justify-content: center;
+}
+
+.imgBox img {
+    width: 47px;
+    height: 57px;
+}
+
+.subTitle {
+    color: #061358;
+    text-align: center;
+}

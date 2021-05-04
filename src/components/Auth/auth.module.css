@@ -1,0 +1,95 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.formField {
+    width: 690px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.auth {
+    display: flex;
+    justify-content: center;
+}
+
+.auth div {
+    margin: 3px;
+}
+
+.auth img {
+    cursor: pointer;
+}
+
+.form {
+
+}
+
+.formBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form a {
+    color: #000;
+    text-decoration: none;
+}
+
+.formBtn {
+    background-color: #0B2E99;
+    color: #fff;
+    border-radius: 15px;
+    padding: 15px 30px;
+}
+
+.formBtn:hover {
+    color: #fff;
+}
+
+.inputLeftIcon {
+    position: absolute;
+    padding: 10px;
+    left: 0;
+    cursor: pointer;
+    top: 0;
+}
+
+.inputRightIcon {
+    position: absolute;
+    padding: 10px;
+    right: 0;
+    cursor: pointer;
+    top: 0;
+}
+
+.tab {
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+}
+
+.tabBtn {
+    width: 50%;
+    border-radius: 30px;
+}
+
+.formField input, .formField select, .formField select option {
+    background-color: #F1F5FC;
+}
+
+.formField input:focus, .formField select:focus, .formField select option {
+    background-color: #F1F5FC;
+}
+
+.inputError {
+    border-color: red;
+}
+
+.inputSuccess {
+    border-color: green;
+}

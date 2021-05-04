@@ -1,0 +1,45 @@
+.selectedTimes {
+    width: 400px;
+}
+
+.deleteIcon {
+    color: #0B2E99;
+}
+
+.applyBtn {
+    background-color: #000D83;
+    color: #fff;
+    border: 1px solid #000D83;
+}
+
+.applyBtn:hover {
+    background-color: #fff;
+    color: #000D83;
+    transition: 0.5s;
+}
+
+.addChart {
+    cursor: pointer;
+    color: #000D83;
+}
+
+.calendar {
+    width: 100%;
+    border: none;
+}
+
+.chart {
+    background-color: #ffffff;
+    height: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ccc;
+}
+
+.calendarBox {
+    background-color: #ffffff;
+    height: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 #ccc;
+}

@@ -1,0 +1,31 @@
+.imgFiled img {
+    width: 100%;
+    height: 100%;
+}
+
+.accordion {
+    width: 100%;
+    border: none;
+    box-shadow: 0 0 8px 0 #97a7c3 inset;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 15px;
+    color: #061358;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    background: #061358;
+    border-radius: 50%;
+    padding: 7px;
+    position: absolute;
+    right: 15px;
+}
+
+.arrow img {
+    width: 17px;
+    height: 15px;
+}

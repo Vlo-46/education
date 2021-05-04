@@ -1,0 +1,43 @@
+.contactField {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    width: 70%;
+}
+
+.form textarea, .form input {
+    background-color: #F1F5FC;
+}
+
+.form textarea {
+    height: 150px;
+    resize: none;
+}
+
+.btn {
+    background-color: #0B2E99;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.banner {
+    /*background-position: center;*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 400px;
+    position: relative;
+}
+
+.pageTitle {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #000D83;
+}

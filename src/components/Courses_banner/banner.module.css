@@ -1,0 +1,28 @@
+.banner {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 450px;
+    object-fit: cover;
+    background-position: center;
+    position: relative;
+}
+
+.bannerChildField {
+    position: absolute;
+    width: 300px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 10px #000000;
+    top: 40%;
+    left: 20%;
+}
+
+.bannerChildField h3 {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.bannerChildField p {
+    font-weight: 100;
+    font-size: 20px;
+}

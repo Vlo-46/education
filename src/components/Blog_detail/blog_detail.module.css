@@ -1,0 +1,72 @@
+.imgField {
+    height: 450px;
+}
+
+.imgField img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.infoField {
+    padding: 30px 0;
+    font-family: "Segoe UI";
+    line-height: 30px;
+}
+
+.lastBlogItem {
+    display: flex;
+    height: 120px;
+    max-height: 120px;
+}
+
+.blogImgField {
+    width: 29%;
+}
+
+.blogImgField img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.blogInfoField {
+    width: 69%;
+    padding: 0 5px;
+}
+
+.blogTitle {
+ color: #061358;
+}
+
+.webSiteName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.webSiteName img {
+    width: 20px;
+    height: 15px;
+}
+
+.shareField {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.commentsField {
+    background-color: #F4F5FA;
+}
+
+.sendBtn {
+    background-color: #000D83;
+    color: #fff;
+    float: right;
+}
+
+.sendBtn:hover {
+    color: #fff;
+}

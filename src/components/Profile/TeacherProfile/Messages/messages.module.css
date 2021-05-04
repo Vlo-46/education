@@ -1,0 +1,166 @@
+.messagesBox {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.searchBtn {
+    position: absolute;
+    padding: 10px;
+    color: #061358;
+    right: 0;
+    cursor: pointer;
+    top: 0;
+}
+
+.candidatesBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.candidate {
+    display: flex;
+    /*justify-content: space-between;*/
+    height: 80px;
+    max-height: 80px;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+.candidate:hover {
+    background-color: #F4F5FA;
+    transition: 0.5s;
+}
+
+.candidate p {
+    font-size: small;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+}
+
+.candidateImg {
+
+}
+
+.candidateImg img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.candidateInfo {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.privateMsg {
+    background-color: #fff;
+    height: 100%;
+}
+
+.msgHead {
+    display: flex;
+    justify-content: space-between;
+    /*border-bottom: 1px solid #ccc;*/
+    box-shadow: 1px 2px 3px 0 #ccc;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.msgCandidate {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.privateMsgCandidateImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.deleteAllMsgIcon {
+    color: #7E7E7E;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.msgBody {
+    height: 60vh;
+}
+
+.addStudentBox {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    align-self: flex-end;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.addStudentBox:hover {
+    background-color: #F4F5FA;
+    transition: 0.5s;
+}
+
+.addBtn {
+    background-color: #000D83;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 47px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.msgFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.msgTextarea {
+    resize: none;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.messageField {
+    display: flex;
+    align-items: center;
+}
+
+.singleMsg {
+    margin-left: 10px;
+    background-color: #F7F7F7;
+    border-radius: 21px;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.msgDots {
+    cursor: pointer;
+}
+
+.openedWindow li {
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+
+.openedWindow li:hover {
+    background-color: #F7F7F7;
+}

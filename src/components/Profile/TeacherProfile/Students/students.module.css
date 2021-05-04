@@ -1,0 +1,65 @@
+.student {
+    height: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.studentBackground {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 5px;
+    width: 100%;
+    height: 70%;
+}
+
+.studentBody {
+    height: 30%;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.profileInfo {
+    display: flex;
+    height: 126px;
+}
+
+.profileInfo img {
+    width: 126px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    cursor: pointer;
+}
+
+.profileImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.studentName {
+    align-self: flex-end;
+    color: #061358;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.messageField {
+    /*height: 100px;*/
+}
+
+.messageField button {
+    color: #061358;
+    background-color: #fff;
+    border: 1px solid #061358;
+    border-radius: 5px;
+}
+
+.messageField button:hover {
+    background-color: #061358;
+    color: #fff;
+    transition: 0.5s;
+}

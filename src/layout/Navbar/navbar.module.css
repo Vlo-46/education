@@ -1,0 +1,66 @@
+.navbar {
+    box-shadow: 0 0 4px 0 #000;
+    z-index: 99;
+}
+
+.webSiteLogo {
+    width: 70px;
+    height: 70px;
+}
+
+.authBtn {
+    color: #0E5BB7;
+    border-radius: 1px;
+    border: 1px solid #D7DEE9;
+}
+
+.authBtn i {
+    color: #0E5BB7;
+    font-size: 20px;
+}
+
+.languageField {
+
+}
+
+.languageField div {
+
+}
+
+.languageImg {
+    width: 25px;
+    height: 25px;
+}
+
+.lang {
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+}
+
+.searchBtn {
+    position: absolute;
+    padding: 10px;
+    color: #061358;
+    right: 0;
+    cursor: pointer;
+}
+
+.languageBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    /*animation-name: example;*/
+    animation-duration: 4s;
+}
+
+@keyframes example {
+    0%   {left:0px; top:0px;}
+    25%  {left:200px; top:0px;}
+    50%  {left:200px; top:200px;}
+    75%  {left:0px; top:200px;}
+    100% {left:0px; top:0px;}
+}
+
+

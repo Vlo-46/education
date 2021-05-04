@@ -1,0 +1,104 @@
+.wrapperRightBox {
+    position: relative;
+}
+
+.imgBox {
+    padding: 0 25px;
+    height: 600px;
+}
+
+.imgBox img {
+    border-radius: 5px 100px 5px 100px;
+    width: 100%;
+    height: 100%;
+}
+
+.childBox1 {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    box-shadow: 0 0 5px 0 #ccc;
+    text-align: center;
+    animation: pulse 1.5s infinite;
+}
+
+.childBox2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    color: #000D83;
+    width: 300px;
+    box-shadow: 0 0 5px 0 #ccc;
+    animation: pulse 1.5s infinite;
+}
+
+.starField {
+    display: flex;
+    justify-content: space-between;
+}
+
+.starField img {
+    width: 20px;
+    height: 20px;
+}
+
+.step {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0 #707070;
+    width: 100%;
+    position: relative;
+}
+
+.stepImg {
+    width: 50px;
+    height: 50px;
+}
+
+.stepText1 {
+    color: #061358
+}
+
+.stepText2 {
+    color: #6E7180
+}
+
+.stepNumber {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    padding: 15px 25px;
+    border-radius: 50%;
+    background-color: #DFF5FF;
+    color: #5BCCFF;
+    font-size: 23px;
+}
+
+@keyframes pulse {
+    0% {
+        margin-top: 0px;
+    }
+    50% {
+        margin-top: 5px;
+    }
+    70% {
+        margin-bottom: 5px;
+    }
+    100% {
+        margin-bottom: 0px;
+    }
+}

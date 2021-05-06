@@ -87,6 +87,7 @@ const Footer = () => {
                             <li><Link to='/login'>Մուտք</Link></li>
                             <li><Link to='/'>Մեր առավելությունները</Link></li>
                             <li><Link to='/'>Լավագույն դասախոսներ</Link></li>
+                            <li><Link to='/conditions'>Պայմաններ</Link></li>
                         </ul>
                     </div>
                     <div className="col sm-12 col-md-6 col-lg-3">

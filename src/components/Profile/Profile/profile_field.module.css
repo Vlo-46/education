@@ -1,0 +1,31 @@
+.fieldTitle {
+    color: #000D83;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.fieldIcon {
+    color: #7E7E7E;
+    font-size: 25px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.profileFieldWrapper {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+/*online students*/
+.chatTitle {
+    color: #061358;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.onlineStudentsField {
+    display: flex;
+    flex-direction: column;
+    /*background-color: #fff;*/
+    height: 100%;
+}

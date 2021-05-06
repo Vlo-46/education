@@ -10,7 +10,7 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/Forgot-password";
 import Profile from "./pages/Profile";
 import CourseDetail from "./pages/Course-detail";
-import ExampleMessage from "./pages/Message";
+import Conditions from "./pages/Conditions";
 
 function App() {
     return (
@@ -27,11 +27,7 @@ function App() {
                 <Route path={'/register'} component={Register}/>
                 <Route path={'/forgot-password'} component={ForgotPassword}/>
                 <Route path={'/profile'} component={Profile}/>
-
-                {/*test*/}
-                <Route path={'/example'} component={ExampleMessage}/>
-
-
+                <Route path={'/conditions'} component={Conditions}/>
             </Switch>
         </BrowserRouter>
     );

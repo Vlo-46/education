@@ -1,4 +1,13 @@
 .container {
     margin: 0 100px;
+    display: flex;
     /*background-color: #FAFAFB;*/
+}
+
+.menuBar {
+    width: 260px;
+}
+
+.profileContent {
+  width: 100%;
 }

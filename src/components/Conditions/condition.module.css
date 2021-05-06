@@ -1,0 +1,25 @@
+.title {
+    color: #0B2E99;
+    font-size: 45px;
+}
+
+.description {
+    color: #707070;
+}
+
+.menuBar {
+    list-style: none;
+    padding: 0;
+}
+
+.menuItem {
+    margin-bottom: 15px;
+    color: #000D83;
+    padding-left: 3px;
+    cursor: pointer;
+}
+
+.menuItem:hover {
+    /*transition: 0.5s;*/
+    border-left: 3px solid #000D83;
+}

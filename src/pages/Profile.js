@@ -5,7 +5,6 @@ import Layout from "../layout/Layout";
 // import TeacherProfileLayout from "../layout/TeacherProfileLayout";
 // import StudentProfileLayout from "../layout/StudentProfileLayout";
 import ProfileLayout from "../layout/ProfileLayout";
-import {useSelector} from "react-redux";
 import Panel from "../components/Profile/Panel/Panel";
 import Notifications from "../components/Profile/Notifications/Notifications";
 import Room from "../components/Profile/Room/Room";
@@ -16,27 +15,23 @@ import CalendarField from "../components/Profile/Calendar/CalendarField";
 import Summery from "../components/Profile/Summery/Summery";
 import Settings from "../components/Profile/Settings/Settings";
 import ProfileField from "../components/Profile/Profile/ProfileField";
-// import keys from "../keys";
-// import {useDispatch, useSelector} from "react-redux";
-// import {getCandidate} from "../redux/actions/profileAction";
+import keys from "../keys";
+import {useDispatch, useSelector} from "react-redux";
+import {getCandidate} from "../redux/actions/profileAction";
 
 const Profile = () => {
-    // let dispatch = useDispatch()
-    //
-    // useEffect(() => {
-    //     if (localStorage.getItem(keys.AUTH)) {
-    //         let auth = JSON.parse(localStorage.getItem(keys.AUTH))
-    //         dispatch(getCandidate(auth))
-    //     } else {
-    //         window.location.href = '/'
-    //     }
-    // }, [])
-    //
-    // let candidate = useSelector(state => state.profile.candidate)
+    let dispatch = useDispatch()
 
-    let candidate = {
-        role: 'teacher'
-    }
+    useEffect(() => {
+        if (localStorage.getItem(keys.AUTH)) {
+            let auth = JSON.parse(localStorage.getItem(keys.AUTH))
+            dispatch(getCandidate(auth))
+        } else {
+            window.location.href = '/'
+        }
+    }, [])
+
+    let candidate = useSelector(state => state.profile.candidate)
 
     let menuTab = useSelector(state => state.profile.menuTab)
 
@@ -90,7 +85,12 @@ const Profile = () => {
 
     return (
         <Layout>
-            <ProfileLayout currentComponent={currentComponent()} candidate={candidate}/>
+            {
+                candidate
+                    ? <ProfileLayout currentComponent={currentComponent()} candidate={candidate}/>
+                    : null
+            }
+
         </Layout>
     )
 }

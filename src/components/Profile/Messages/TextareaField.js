@@ -1,17 +1,29 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from "./messages.module.css";
 import 'emoji-mart/css/emoji-mart.css'
-import {Picker} from 'emoji-mart'
+// import {Picker} from 'emoji-mart'
 import axios from "axios";
 import keys from "../../../keys";
+import openSocket from 'socket.io-client'
+import {useDispatch} from "react-redux";
+import {sendMessage} from "../../../redux/actions/profileAction";
 
-const TextareaField = () => {
-    let SET_EMOJI = (emoji, event) => {
-        console.log(emoji)
-    }
+const TextareaField = ({candidateId}) => {
+    // let SET_EMOJI = (emoji, event) => {
+    //     console.log(emoji)
+    // }
+
+    const ENDPOINT = 'http://localhost:5000/'
+    let dispatch = useDispatch()
+
+    useEffect(() => {
+        let socket = openSocket(ENDPOINT, {transports: ['websocket']})
+        socket.on('sended message', data => {
+            dispatch(sendMessage(data))
+        })
+    }, [])
 
     const [message, setMessage] = useState('')
-    const [userMessage, setUserMessage] = useState(null)
 
     let GET_MESSAGE = e => {
         setMessage(e.target.value)
@@ -19,24 +31,19 @@ const TextareaField = () => {
 
     let SEND_MSG = e => {
         e.preventDefault()
+        let socket = openSocket(ENDPOINT, {transports: ['websocket']})
+        let user = JSON.parse(localStorage.getItem(keys.AUTH))
         let post = {
-            receiver_id: 5,
-            message
+            receiver_id: candidateId,
+            message,
+            sender_id: user.id
         }
-        axios.post(`${keys.BACKEND_URI}/message/send`, post, {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjIwMTA3NjYxfQ.qsEXNDEoU9qFYPjqee5SsQSCIF77ptBSCy0nNkj7yDI'
-        })
-            .then(res => {
-                setUserMessage(res.data)
-                setMessage('')
-            })
-            .catch(e => {
-                alert(e)
-            })
+        socket.emit('new message', post)
+        document.getElementById('messageField').reset()
     }
 
     return (
-        <form className={`form-group ${styles.msgFooter}`}>
+        <form className={`form-group ${styles.msgFooter}`} id={'messageField'}>
             {/*<Picker onClick={SET_EMOJI}/>*/}
             <div className={styles.addBtn}>
                 <img src="assets/icons/add-counter.svg" alt="add"/>
@@ -49,11 +56,6 @@ const TextareaField = () => {
                     <img src="assets/icons/sendIcon.svg" alt="send"/>
                 </button>
             </div>
-            {
-                userMessage
-                    ? <pre>{userMessage}</pre>
-                    : null
-            }
         </form>
     )
 }

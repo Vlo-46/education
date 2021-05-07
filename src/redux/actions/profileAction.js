@@ -1,10 +1,6 @@
-import {CHANGE_PROFILE_MENU, GET_CANDIDATE} from "../types";
+import {CHANGE_PROFILE_MENU, DELETE_MESSAGE, GET_CANDIDATE, GET_MESSAGES, SEND_MESSAGE} from "../types";
 import keys from "../../keys";
 import axios from "axios";
-
-export function getProfileMenu() {
-
-}
 
 export function changeProfileMenu(name) {
     return dispatch => {
@@ -30,4 +26,20 @@ export function getCandidate(auth) {
     }
 }
 
-// GET_CANDIDATE
+export function getAllMessages(data) {
+    return dispatch => {
+        dispatch({type: GET_MESSAGES, payload: data})
+    }
+}
+
+export function sendMessage(msg) {
+    return dispatch => {
+        dispatch({type: SEND_MESSAGE, payload: msg})
+    }
+}
+
+export function deleteMessage(id) {
+    return dispatch => {
+        dispatch({type: DELETE_MESSAGE, payload: id})
+    }
+}

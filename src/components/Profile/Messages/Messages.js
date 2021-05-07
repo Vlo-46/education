@@ -1,20 +1,17 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import styles from './messages.module.css'
 import SearchMsg from "./SearchMsg";
 import Candidate from "./Candidate";
 import PrivateMsg from "./PrivateMsg";
 import TextareaField from "./TextareaField";
-import axios from "axios";
-import keys from "../../../keys";
 
-const Messages = () => {
-    const [user, setUser] = useState(null)
+
+const Messages = ({candidate}) => {
+    const [candidateId, setCandidateId] = useState(candidate.role === 'teacher' ? 5 : 2)
 
     let scrollStyle = {
         overflowY: 'scroll'
     }
-
-
 
     return (
         <div className={'p-4'}>
@@ -24,15 +21,12 @@ const Messages = () => {
                         <p style={{fontSize: '18px', color: '#061358'}}>Նամակներ</p>
                         <SearchMsg/>
                         <div className={styles.candidatesBox} style={scrollStyle}>
-                            <Candidate />
-                            <Candidate />
-                            <Candidate />
-                            <Candidate />
+                            <Candidate candidateId={candidateId}/>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-9">
-                    <PrivateMsg/>
+                    <PrivateMsg candidateId={candidateId}/>
                 </div>
             </div>
             <div className="row">
@@ -43,7 +37,7 @@ const Messages = () => {
                     </div>
                 </div>
                 <div className="col-md-9">
-                    <TextareaField/>
+                    <TextareaField candidateId={candidateId}/>
                 </div>
             </div>
         </div>

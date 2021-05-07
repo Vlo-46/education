@@ -1,59 +1,9 @@
 import React from 'react'
 import styles from './courses.module.css'
-import Teacher from "../Teachers/Teacher";
 import PriceList from "../Price_list/PriceList";
 
 const Courses_component = () => {
-    let teachers = [
-        {
-            id: 1,
-            name: 'Կարեն Գեղամյան',
-            profession: 'Անգլերենի մասնագետ',
-            image: 'assets/images/teacher-1.png'
-        },
-        {
-            id: 2,
-            name: 'Մառլեն Բաբայան',
-            profession: 'Իտալերենի մասնագետ',
-            image: 'assets/images/teacher-2.png'
-        },
-        {
-            id: 3,
-            name: 'Գեղամ Խաչատրյան',
-            profession: 'Արաբերենի մասնագետ',
-            image: 'assets/images/teacher-1.png'
-        },
-        {
-            id: 4,
-            name: 'Պողոս Պետրոսյան',
-            profession: 'Իսպաներենի մասնագետ',
-            image: 'assets/images/teacher-2.png'
-        },
-        {
-            id: 5,
-            name: 'Կարեն Գեղամյան',
-            profession: 'Անգլերենի մասնագետ',
-            image: 'assets/images/teacher-1.png'
-        },
-        {
-            id: 6,
-            name: 'Մառլեն Բաբայան',
-            profession: 'Իտալերենի մասնագետ',
-            image: 'assets/images/teacher-2.png'
-        },
-        {
-            id: 7,
-            name: 'Գեղամ Խաչատրյան',
-            profession: 'Արաբերենի մասնագետ',
-            image: 'assets/images/teacher-1.png'
-        },
-        {
-            id: 8,
-            name: 'Պողոս Պետրոսյան',
-            profession: 'Իսպաներենի մասնագետ',
-            image: 'assets/images/teacher-2.png'
-        },
-    ]
+
 
     return (
         <div className='mt-5 p-5'>

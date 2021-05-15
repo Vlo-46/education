@@ -1,31 +1,10 @@
 import React from 'react'
 import styles from "../Room/room.module.css";
 import RatingItem from "./RatingItem";
+import {useSelector} from "react-redux";
 
 const Ratings = () => {
-    let ratingItems = [
-        {
-            id: 1,
-            student: {name: 'Քրիստինե', surname: 'Կառլենյան', image: 'assets/images/teacher-1.png'},
-            review: 'Ուսուցման որակը բարձր է ։Անչափ շնորհակալ \n' +
-                'ենք ստացած գիտելիքի համար:Ուսուցման որակը բարձր է ։Անչափ շնորհակալ ենք ստացած գիտելիքի համար',
-            rate: 5
-        },
-        {
-            id: 2,
-            student: {name: 'Կարեն', surname: 'Կարապետյան', image: 'assets/images/teacher-2.png'},
-            review: 'Ուսուցման որակը բարձր է ։Անչափ շնորհակալ \n' +
-                'ենք ստացած գիտելիքի համար:Ուսուցման որակը բարձր է ։Անչափ շնորհակալ ենք ստացած գիտելիքի համար',
-            rate: 4
-        },
-        {
-            id: 3,
-            student: {name: 'Մարինե', surname: 'Սանոսյան', image: 'assets/images/teacher-1.png'},
-            review: 'Ուսուցման որակը բարձր է ։Անչափ շնորհակալ \n' +
-                'ենք ստացած գիտելիքի համար:Ուսուցման որակը բարձր է ։Անչափ շնորհակալ ենք ստացած գիտելիքի համար',
-            rate: 3
-        },
-    ]
+    let reviews = useSelector(state => state.profile.teacherReview)
 
     return (
         <div className={'p-4'}>
@@ -41,7 +20,9 @@ const Ratings = () => {
                     </thead>
                     <tbody>
                     {
-                        ratingItems.map(ratingItem => <RatingItem key={ratingItem.id} ratingItem={ratingItem}/>)
+                        reviews.length
+                            ? reviews.map(review => <RatingItem key={review.id} review={review}/>)
+                            : null
                     }
                     </tbody>
                 </table>

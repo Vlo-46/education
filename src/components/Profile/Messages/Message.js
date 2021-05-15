@@ -15,7 +15,7 @@ const Message = ({candidateId, message}) => {
         socket.on('deleted message', id => {
             dispatch(deleteMessage(id))
         })
-    }, [])
+    }, [dispatch])
 
     let DELETE_MESSAGE_HANDLER = id => {
         let socket = openSocket(keys.ENDPOINT, {transports: ['websocket']})
@@ -40,7 +40,7 @@ const Message = ({candidateId, message}) => {
                 message.sender_id !== candidateId
                     ? <div className={'p-2'}>
                         <img src="assets/icons/dots.svg"
-                             alt="dots"
+                             alt="dots icon"
                              className={`${styles.msgDots} dropdown-toggle dropdown-toggle-split`}
                              data-bs-toggle="dropdown"
                              aria-expanded="false"

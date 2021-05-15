@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styles from "./messages.module.css";
 import 'emoji-mart/css/emoji-mart.css'
 // import {Picker} from 'emoji-mart'
-import axios from "axios";
+// import axios from "axios";
 import keys from "../../../keys";
 import openSocket from 'socket.io-client'
 import {useDispatch} from "react-redux";
@@ -21,7 +21,7 @@ const TextareaField = ({candidateId}) => {
         socket.on('sended message', data => {
             dispatch(sendMessage(data))
         })
-    }, [])
+    }, [dispatch])
 
     const [message, setMessage] = useState('')
 

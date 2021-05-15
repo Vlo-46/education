@@ -1,4 +1,4 @@
-export default {
+const keys =  {
     BACKEND_URI: 'http://localhost:5000/api',
     FRONTEND_URI: 'http://localhost:3000',
     ADMINISTRATOR_URI: 'http://localhost:8080',
@@ -6,3 +6,5 @@ export default {
     PRIVATE_MESSAGE: "PRIVATE_MESSAGE",
     ENDPOINT: 'http://localhost:5000/'
 }
+
+export default keys

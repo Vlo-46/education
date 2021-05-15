@@ -1,4 +1,16 @@
-import {CHANGE_PROFILE_MENU, DELETE_MESSAGE, GET_CANDIDATE, GET_MESSAGES, SEND_MESSAGE} from "../types";
+import {
+    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION,
+    DELETE_MESSAGE,
+    GET_CANDIDATE,
+    GET_MESSAGES,
+    GET_TEACHER,
+    SEND_MESSAGE,
+    TEACHER_CREATE_EDUCATION,
+    TEACHER_CREATE_PHONE, TEACHER_CREATE_VIDEO,
+    TEACHER_CREATE_WORK_EXPERIENCE,
+    TEACHER_DELETE_EDUCATION, TEACHER_DELETE_PHONE, TEACHER_DELETE_VIDEO,
+    TEACHER_DELETE_WORK_EXPERIENCE
+} from "../types";
 
 const initialState = {
     menuTabs: {
@@ -25,7 +37,16 @@ const initialState = {
     },
     menuTab: 'panel',
     candidate: null,
-    messages: []
+    messages: [],
+    teacherReview: [],
+    teacherEducation: [],
+    teacherCertificate: [],
+    teacherWorkExperience: [],
+    teacherLanguageOfInstruction: null,
+    teacherAddress: null,
+    teacherPhone: [],
+    teacherVideo: [],
+    notification: []
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -33,13 +54,48 @@ export const profileReducer = (state = initialState, action) => {
         case CHANGE_PROFILE_MENU:
             return {...state, menuTab: action.payload}
         case GET_CANDIDATE:
-            return {...state, candidate: action.payload}
+            return {
+                ...state,
+                candidate: action.payload,
+                teacherReview: action.payload['Teacher_reviews'],
+                teacherEducation: action.payload['Teacher_educations'],
+                teacherCertificate: action.payload['Teacher_certificates'],
+                teacherWorkExperience: action.payload['Teacher_work_experiences'],
+                teacherLanguageOfInstruction: action.payload['Teacher_language_of_instructions'],
+                teacherAddress: action.payload['TeacherAddresses'],
+                teacherPhone: action.payload['Teacher_phones'],
+                teacherVideo: action.payload['Teacher_videos'],
+                notification: action.payload['Notifications']
+            }
         case GET_MESSAGES:
             return {...state, messages: action.payload}
         case SEND_MESSAGE:
             return {...state, messages: [...state.messages, {...action.payload}]}
         case DELETE_MESSAGE:
             return {...state, messages: state.messages.filter(i => i.id !== action.payload)}
+        case GET_TEACHER:
+            return {...state, teacher: action.payload}
+        case TEACHER_CREATE_EDUCATION:
+            return {...state, teacherEducation: [...state.teacherEducation, {...action.payload}]}
+        case TEACHER_DELETE_EDUCATION:
+            return {...state, teacherEducation: state.teacherEducation.filter(i => i.id !== action.payload)}
+        case TEACHER_CREATE_WORK_EXPERIENCE:
+            return {...state, teacherWorkExperience: [...state.teacherWorkExperience, {...action.payload}]}
+        case TEACHER_DELETE_WORK_EXPERIENCE:
+            return {...state, teacherWorkExperience: state.teacherWorkExperience.filter(i => i.id !== action.payload)}
+        case TEACHER_CREATE_PHONE:
+            return {...state, teacherPhone: [...state.teacherPhone, {...action.payload}]}
+        case TEACHER_DELETE_PHONE:
+            return {...state, teacherPhone: state.teacherPhone.filter(i => i.id !== action.payload)}
+        case TEACHER_CREATE_VIDEO:
+            return {...state, teacherVideo: [...state.teacherVideo, {...action.payload}]}
+        case TEACHER_DELETE_VIDEO:
+            return {...state, teacherVideo: state.teacherVideo.filter(i => i.id !== action.payload)}
+        case CHECK_NOTIFICATION:
+            let notItem = state.notification.filter(i => i.id === action.payload.notification_id)[0]
+            notItem.status = action.payload.status
+            state.notification.filter(i => i.id !== action.payload.notification_id)
+            return {...state, notification: [...state.notification, {...notItem}]}
         default:
             return state
     }

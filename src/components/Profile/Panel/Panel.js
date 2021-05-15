@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './panel.module.css'
 import OnlineStudent from "../Notifications/OnlineStudent";
 import SearchStudents from "../Notifications/SearchStudents";
@@ -8,8 +8,27 @@ import ProgressBar from "./ProgressBar";
 import ProfileInfo from "./ProfileInfo";
 import Lesson from "./Lesson";
 import Schedule from "./Schedule";
+import keys from "../../../keys";
+import axios from "axios";
 
 const Panel = ({candidate}) => {
+    const [teacherProfession, setTeacherProfession] = useState(null)
+    useEffect(() => {
+        let user = JSON.parse(localStorage.getItem(keys.AUTH))
+        axios.get(`${keys.BACKEND_URI}/subject/get_single_subject`, {
+            params: {id: candidate.id},
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        })
+            .then(res => {
+                setTeacherProfession(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [candidate.id])
+
     let onlineStudents = [
         {id: 1, username: 'Սոնա Սիմոնյան', image: 'assets/images/teacher-1.png'},
         {id: 2, username: 'Նարեկ Խաչատրյան', image: 'assets/images/teacher-2.png'},
@@ -21,8 +40,8 @@ const Panel = ({candidate}) => {
                 <div className="col-md-9">
                     {
                         candidate.role === 'teacher'
-                            ? <TeacherProfileHead/>
-                            : <StudentProfileHead/>
+                            ? <TeacherProfileHead candidate={candidate} teacherProfession={teacherProfession}/>
+                            : <StudentProfileHead candidate={candidate}/>
                     }
                     <div className="profileBody mt-5 mb-5 pl-2">
                         <div className="row">

@@ -1,20 +1,53 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './rating.module.css'
+import axios from "axios";
+import keys from "../../../keys";
 
-const RatingItem = ({ratingItem}) => {
+const RatingItem = ({review}) => {
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        axios.get(`${keys.BACKEND_URI}/auth/get_user`, {
+            params: {id: review.student_id}
+        })
+            .then(res => {
+                setUser(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+
+    }, [review.student_id])
+
+
     return (
         <tr>
             <div className={styles.student}>
-                <img src={ratingItem.student.image}
-                     alt={ratingItem.student.name}
-                     className={styles.studentImg}
-                />
-                <span>{ratingItem.student.name}&nbsp;{ratingItem.student.surname}</span>
+                {
+                    user
+                        ? <>
+                            {
+                                user.image
+                                    ? <img src={user.image}
+                                           alt={'teacher'}
+                                           className={styles.studentImg}
+                                    />
+                                    : <img src={'assets/images/no-photo.png'}
+                                           alt={'teacher'}
+                                           className={styles.studentImg}
+                                    />
+                            }
+
+                            <span>{user.name}&nbsp;{user.surname}</span>
+                        </>
+                        : null
+                }
+
             </div>
-            <td>{ratingItem.review}</td>
+            <td>{review.review}</td>
             <td className={styles.rateBox}>
                 {
-                    [...Array(ratingItem.rate)].map((x, i) => (
+                    [...Array(review.rate)].map((x, i) => (
                         <img src="assets/icons/star.png" alt={x} key={i}/>
                     ))
                 }

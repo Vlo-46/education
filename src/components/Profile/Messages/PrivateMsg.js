@@ -43,11 +43,11 @@ const PrivateMsg = ({candidateId}) => {
                 alert('Error')
             })
 
-    }, [])
+    }, [candidateId, dispatch])
 
     const allMessages = useSelector(state => state.profile.messages)
 
-    console.log(`private message field - ${candidateId}`)
+    // console.log(`private message field - ${candidateId}`)
 
     return (
         <div className={styles.privateMsg}>
@@ -58,7 +58,7 @@ const PrivateMsg = ({candidateId}) => {
                             <div>
                                 {
                                     candidate.image
-                                        ? <img src={candidate.image} alt="" className={styles.privateMsgCandidateImg}/>
+                                        ? <img src={candidate.image} alt={candidate.name} className={styles.privateMsgCandidateImg}/>
                                         : <img src="assets/images/no-photo.png" alt="no photo"
                                                className={styles.privateMsgCandidateImg}/>
                                 }

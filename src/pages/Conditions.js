@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import Layout from "../layout/Layout";
 import Condition1 from "../components/Conditions/Condition_1";
 import Condition2 from "../components/Conditions/Condition_2";

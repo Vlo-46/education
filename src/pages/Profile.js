@@ -1,9 +1,5 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Layout from "../layout/Layout";
-// import TeacherProfile from "../components/Profile/TeacherProfile";
-// import StudentProfile from "../components/Profile/StudentProfile/StudentProfile";
-// import TeacherProfileLayout from "../layout/TeacherProfileLayout";
-// import StudentProfileLayout from "../layout/StudentProfileLayout";
 import ProfileLayout from "../layout/ProfileLayout";
 import Panel from "../components/Profile/Panel/Panel";
 import Notifications from "../components/Profile/Notifications/Notifications";
@@ -17,21 +13,39 @@ import Settings from "../components/Profile/Settings/Settings";
 import ProfileField from "../components/Profile/Profile/ProfileField";
 import keys from "../keys";
 import {useDispatch, useSelector} from "react-redux";
-import {getCandidate} from "../redux/actions/profileAction";
+import {getTeacher} from "../redux/actions/profileAction";
+import axios from "axios";
 
 const Profile = () => {
+    const [teacherProfession, setTeacherProfession] = useState(null)
     let dispatch = useDispatch()
+    let candidate = useSelector(state => state.profile.candidate)
 
     useEffect(() => {
         if (localStorage.getItem(keys.AUTH)) {
             let auth = JSON.parse(localStorage.getItem(keys.AUTH))
-            dispatch(getCandidate(auth))
+            dispatch(getTeacher(auth))
+
+            if(candidate) {
+                axios.get(`${keys.BACKEND_URI}/subject/get_single_subject`, {
+                    params: {id: candidate.id},
+                    headers: {
+                        Authorization: `Bearer ${auth.token}`
+                    }
+                })
+                    .then(res => {
+                        setTeacherProfession(res.data)
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            }
+
         } else {
             window.location.href = '/'
         }
     }, [])
 
-    let candidate = useSelector(state => state.profile.candidate)
 
     let menuTab = useSelector(state => state.profile.menuTab)
 
@@ -49,7 +63,7 @@ const Profile = () => {
                 case 'settings':
                     return <Settings candidate={candidate}/>
                 case 'profile':
-                    return <ProfileField candidate={candidate}/>
+                    return <ProfileField candidate={candidate} tab={menuTab} teacherProfession={teacherProfession}/>
                 default:
                     return <Panel candidate={candidate}/>
             }
@@ -74,7 +88,7 @@ const Profile = () => {
                 case 'settings':
                     return <Settings candidate={candidate}/>
                 case 'profile':
-                    return <ProfileField candidate={candidate}/>
+                    return <ProfileField candidate={candidate} tab={menuTab} teacherProfession={teacherProfession}/>
                 default:
                     return <Panel candidate={candidate}/>
             }
@@ -90,7 +104,6 @@ const Profile = () => {
                     ? <ProfileLayout currentComponent={currentComponent()} candidate={candidate}/>
                     : null
             }
-
         </Layout>
     )
 }

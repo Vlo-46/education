@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './panel.module.css'
 
-const TeacherProfileHead = () => {
+
+const TeacherProfileHead = ({tab, candidate, teacherProfession}) => {
     return (
         <div className="bg-white shadow rounded overflow-hidden">
             <div className={`px-4 pt-0 pb-4 pt-5 ${styles.cover}`}
@@ -9,14 +10,32 @@ const TeacherProfileHead = () => {
             >
                 <div className="media align-items-end profile-header">
                     <div className="profile mr-3">
-                        <img
-                            src="assets/images/teacher-2.png" alt="..."
-                            className={`mb-2 img-thumbnail ${styles.accountImg}`}
-                        />
+                        {
+                            candidate.image
+                                ? <img
+                                    src={candidate.image} alt={candidate.name}
+                                    className={`mb-2 img-thumbnail ${styles.accountImg}`}
+                                />
+                                : <img
+                                    src="assets/images/no-photo.png" alt={candidate.name}
+                                    className={`mb-2 img-thumbnail ${styles.accountImg}`}
+                                />
+                        }
+
+                        {/*{*/}
+                        {/*    tab === 'profile'*/}
+                        {/*        ? <button>Փոփոխել նկարը</button>*/}
+                        {/*        : null*/}
+                        {/*}*/}
                     </div>
                     <div className="media-body text-white">
-                        <h4 className={`mt-0 mb-3 ${styles.accountInfo}`}>Արա Գրիգորյան</h4>
-                        <p className={`small mb-4 ${styles.profession}`}>@English Teacher</p>
+                        <h4 className={`mt-0 mb-3 ${styles.accountInfo}`}>{candidate.name}</h4>
+                        {
+                            teacherProfession
+                                ? <p className={`small mb-4 ${styles.profession}`}>@{teacherProfession.name}</p>
+                                : null
+                        }
+
                     </div>
                 </div>
             </div>

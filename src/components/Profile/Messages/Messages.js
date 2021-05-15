@@ -13,6 +13,8 @@ const Messages = ({candidate}) => {
         overflowY: 'scroll'
     }
 
+    console.log(setCandidateId)
+
     return (
         <div className={'p-4'}>
             <div className="row">

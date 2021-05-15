@@ -155,3 +155,18 @@
     resize: none;
     height: 200px !important;
 }
+
+.approvedStatus {
+    font-size: 21px;
+    color: green;
+}
+
+.deniedStatus {
+    font-size: 21px;
+    color: red;
+}
+
+.questionStatus {
+    font-size: 21px;
+    color: darkred;
+}

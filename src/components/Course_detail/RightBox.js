@@ -10,7 +10,7 @@ const CourseDetailRightBox = () => {
     const [value, onChange] = useState(new Date());
 
     let ONCHANGE_HANDLER = e => {
-
+        console.log(onChange)
     }
 
     return (

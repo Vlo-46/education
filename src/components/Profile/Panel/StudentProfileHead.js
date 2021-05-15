@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './panel.module.css'
 
-const StudentProfileHead = () => {
+const StudentProfileHead = ({tab, candidate}) => {
     return (
         <div className="bg-white shadow rounded overflow-hidden">
             <div className={`px-4 pt-0 pb-4 pt-5 ${styles.cover}`}
@@ -9,13 +9,20 @@ const StudentProfileHead = () => {
             >
                 <div className="media align-items-end profile-header">
                     <div className="profile mr-3">
-                        <img
-                            src="assets/images/teacher-2.png" alt="..."
-                            className={`mb-2 img-thumbnail ${styles.accountImg}`}
-                        />
+                        {
+                            candidate.image
+                                ? <img
+                                    src={candidate.image} alt={candidate.name}
+                                    className={`mb-2 img-thumbnail ${styles.accountImg}`}
+                                />
+                                : <img
+                                    src="assets/images/no-photo.png" alt={candidate.name}
+                                    className={`mb-2 img-thumbnail ${styles.accountImg}`}
+                                />
+                        }
                     </div>
                     <div className="media-body text-white">
-                        <h4 className={`mt-0 mb-3 ${styles.accountInfo}`}>Արա Գրիգորյան</h4>
+                        <h4 className={`mt-0 mb-3 ${styles.accountInfo}`}>{candidate.name}</h4>
                     </div>
                 </div>
             </div>

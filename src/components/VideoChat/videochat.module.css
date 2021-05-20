@@ -1,0 +1,174 @@
+.videoMessagesField {
+    background-color: #F4F5FA;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-height: 600px;
+    height: 600px;
+}
+
+.userInfo {
+    padding: 20px;
+    box-shadow: 0 2px 2px 0 #ccc;
+}
+
+.userItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.userItem div {
+    margin-left: 10px;
+}
+
+.userImgField {
+    width: 50px;
+    height: 50px;
+}
+
+.userImgField img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.allMessages {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sendMessageField {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.textareaField {
+    width: 100%;
+}
+
+.textarea {
+    height: 56px;
+    border-radius: 28px;
+    border: none;
+    resize: none;
+    text-indent: 10px;
+}
+
+.addBtn {
+    background-color: #000D83;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.addBtn img {
+    width: 100%;
+    height: 100%;
+}
+
+.msgField {
+    padding: 10px 15px;
+    border-radius: 21px;
+    width: max-content;
+    margin-bottom: 15px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.videoField {
+    position: relative;
+    width: 100%;
+    /*height: 100vh;*/
+}
+
+.userCamera {
+    width: auto;
+    height: 200px;
+    z-index: 999;
+    position: absolute;
+    top: 2%;
+    right: 5px;
+    background-color: #373A3E;
+    box-shadow: 0 0 5px 0 #373A3E;
+    border-radius: 5px;
+}
+
+.instruments {
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+    justify-content: center;
+    width: 100%;
+}
+
+.instruments button img {
+    width: 50px;
+    height: 50px;
+}
+
+.instrumentButton {
+    margin-left: 5px;
+    background-color: #373A3E;
+    color: #E8E8E9;
+    height: 70px;
+}
+
+.instrumentButton:hover {
+    background-color: #E8E8E9;
+    color: #373A3E;
+    transition: 0.5s;
+}
+
+.instrumentButtonEndCall {
+    margin-left: 5px;
+    background-color: #e60c0c;
+    color: #E8E8E9;
+    border: 1px solid #e60c0c;
+    height: 70px;
+}
+
+.instrumentButtonEndCall:hover {
+    background-color: #E8E8E9;
+    color: #e60c0c;
+    border: 1px solid #e60c0c;
+    transition: 0.5s;
+}
+
+.noVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera {
+    width: 100%;
+    /*height: 100vh;*/
+    border-radius: 15px;
+    box-shadow: 0 0 5px 0;
+}
+
+.senderImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.sendedMsg {
+    padding: 0 10px;
+}

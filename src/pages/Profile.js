@@ -26,7 +26,7 @@ const Profile = () => {
             let auth = JSON.parse(localStorage.getItem(keys.AUTH))
             dispatch(getTeacher(auth))
 
-            if(candidate) {
+            if (candidate) {
                 axios.get(`${keys.BACKEND_URI}/subject/get_single_subject`, {
                     params: {id: candidate.id},
                     headers: {

@@ -11,6 +11,7 @@ import ForgotPassword from "./pages/Forgot-password";
 import Profile from "./pages/Profile";
 import CourseDetail from "./pages/Course-detail";
 import Conditions from "./pages/Conditions";
+import VideoChat from "./components/Profile/Video-chat/VideoChat";
 
 function App() {
     return (
@@ -26,8 +27,9 @@ function App() {
                 <Route path={'/login'} component={Login}/>
                 <Route path={'/register'} component={Register}/>
                 <Route path={'/forgot-password'} component={ForgotPassword}/>
-                <Route path={'/profile'} component={Profile}/>
+                <Route path={'/profile'} component={Profile} exact/>
                 <Route path={'/conditions'} component={Conditions}/>
+                <Route path={'/profile/video-chat/:id'} component={VideoChat} exact/>
             </Switch>
         </BrowserRouter>
     );

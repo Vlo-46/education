@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from "./room.module.css";
+import RoomAlert from "./RoomAlert";
 
 const RoomItem = ({roomItem}) => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    let OPEN_IN_ROOM = () => {
+        setIsOpen(true)
+    }
+
     return (
         <tr>
             <th scope="row">
@@ -22,6 +29,7 @@ const RoomItem = ({roomItem}) => {
                         ? <img src="assets/icons/access-call.svg"
                                alt="access"
                                className={styles.statusAccess}
+                               onClick={OPEN_IN_ROOM}
                         />
                         : <img src="assets/icons/dont-call.svg"
                                alt="dont"
@@ -30,6 +38,11 @@ const RoomItem = ({roomItem}) => {
                 }
 
             </td>
+            {
+                isOpen
+                    ? <RoomAlert/>
+                    : null
+            }
         </tr>
     )
 }

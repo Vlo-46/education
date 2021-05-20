@@ -58,11 +58,15 @@ const PrivateMsg = ({candidateId}) => {
                             <div>
                                 {
                                     candidate.image
-                                        ? <img src={candidate.image} alt={candidate.name} className={styles.privateMsgCandidateImg}/>
-                                        : <img src="assets/images/no-photo.png" alt="no photo"
-                                               className={styles.privateMsgCandidateImg}/>
+                                        ? <img src={candidate.image}
+                                               alt={candidate.name}
+                                               className={styles.privateMsgCandidateImg}
+                                        />
+                                        : <img src="assets/images/no-photo.png"
+                                               alt="no photo"
+                                               className={styles.privateMsgCandidateImg}
+                                        />
                                 }
-
                             </div>
                             <div>
                                 <span>{candidate.name}&nbsp;{candidate.surname}</span>

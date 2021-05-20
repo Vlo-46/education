@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76" height="76" viewBox="0 0 76 76">
+  <defs>
+    <filter id="Ellipse_258" x="0" y="0" width="76" height="76" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.651"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_5" data-name="Group 5" transform="translate(-892 -652)">
+    <g id="Group_2163" data-name="Group 2163">
+      <g transform="matrix(1, 0, 0, 1, 892, 652)" filter="url(#Ellipse_258)">
+        <circle id="Ellipse_258-2" data-name="Ellipse 258" cx="29" cy="29" r="29" transform="translate(9 9)" fill="#dbdcdc" opacity="0.3"/>
+      </g>
+      <g id="video-camera" transform="translate(915 583.488)">
+        <g id="Group_2047" data-name="Group 2047" transform="translate(0 96.512)">
+          <g id="Group_2046" data-name="Group 2046" transform="translate(0 0)">
+            <path id="Path_4631" data-name="Path 4631" d="M17.478,96.512H3.381A3.578,3.578,0,0,0,0,100.24V112.8a3.578,3.578,0,0,0,3.381,3.728h14.1a3.578,3.578,0,0,0,3.381-3.728V100.24A3.554,3.554,0,0,0,17.478,96.512Z" transform="translate(0 -96.512)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Group_2049" data-name="Group 2049" transform="translate(22.68 98.527)">
+          <g id="Group_2048" data-name="Group 2048" transform="translate(0 0)">
+            <path id="Path_4632" data-name="Path 4632" d="M346.625,123.907a1.357,1.357,0,0,0-.5.261l-4.618,3.355v8.649l4.648,3.355a1.582,1.582,0,0,0,2.428-.82,2.746,2.746,0,0,0,.237-1.118V126.07C348.816,124.69,347.78,123.572,346.625,123.907Z" transform="translate(-341.504 -123.847)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -4,7 +4,7 @@ import styles from './course_detail.module.css'
 const Certificate = ({certificate}) => {
     return (
         <div className={styles.certificateBox}>
-            <img src={certificate.img} alt=""/>
+            <img src={'assets/images/certificate.png'} alt=""/>
         </div>
     )
 }

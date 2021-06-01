@@ -15,6 +15,7 @@ import keys from "../keys";
 import {useDispatch, useSelector} from "react-redux";
 import {getTeacher} from "../redux/actions/profileAction";
 import axios from "axios";
+import ProfileLoader from "../components/Profile/ProfileLoader/ProfileLoader";
 
 const Profile = () => {
     const [teacherProfession, setTeacherProfession] = useState(null)
@@ -97,6 +98,14 @@ const Profile = () => {
         }
     }
 
+    let profileLoader = useSelector(state => state.app.profileLoader)
+    if (profileLoader) {
+        return <Layout>
+            <div className="container">
+                <ProfileLoader profileLoader={profileLoader}/>
+            </div>
+        </Layout>
+    }
     return (
         <Layout>
             {

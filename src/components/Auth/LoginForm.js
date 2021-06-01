@@ -35,13 +35,23 @@ const LoginForm = () => {
             })
     }
 
+    let AUTH_WITH_FB = () => {
+        // axios.get(`${keys.BACKEND_URI}/auth/facebook/callback`)
+        //     .then(res => {
+        //         console.log(res)
+        //     })
+        //     .catch(e => {
+        //         console.log(e)
+        //     })
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={`${styles.formField} mt-5 mb-5`}>
                 <h5 className={'text-center'}>Մուտք</h5>
                 <div className={`${styles.auth} mb-3 mt-5`}>
                     <div><img src="assets/icons/1816.svg" alt=""/></div>
-                    <div><img src="assets/icons/1817.svg" alt=""/></div>
+                    <div onClick={AUTH_WITH_FB}><img src="assets/icons/1817.svg" alt=""/></div>
                     <div><img src="assets/icons/1824.svg" alt=""/></div>
                 </div>
                 <p className={'text-center'}>կամ մուտքագրեք Ձեր էլ․ հասցեն ։ </p>

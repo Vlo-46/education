@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Certificate from "./Certificate";
 
-const Certificates = () => {
+const Certificates = ({certificates}) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -15,11 +15,11 @@ const Certificates = () => {
         autoplay: true,
     };
 
-    let certificates = [
-        {id: 1, img: 'assets/images/certificate.png'},
-        {id: 2, img: 'assets/images/certificate.png'},
-        {id: 3, img: 'assets/images/certificate.png'},
-    ]
+    // let certificates = [
+    //     {id: 1, img: 'assets/images/certificate.png'},
+    //     {id: 2, img: 'assets/images/certificate.png'},
+    //     {id: 3, img: 'assets/images/certificate.png'},
+    // ]
 
     return (
         <div className={'mt-3 mb-3'}>

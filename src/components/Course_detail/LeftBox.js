@@ -3,12 +3,17 @@ import CourseDetailVideo from "./Video";
 import AboutMe from "./AboutMe";
 import CourseDetailInfo from "./Info";
 
-const CourseDetailLeftBox = () => {
+const CourseDetailLeftBox = ({candidate}) => {
     return (
         <div className="col-sm-12 col-md-6 col-lg-8">
-            <CourseDetailInfo />
+            <CourseDetailInfo candidate={candidate}/>
             <AboutMe/>
-            <CourseDetailVideo/>
+            {
+                candidate.Teacher_videos.length
+                    ? <CourseDetailVideo video={candidate.Teacher_videos}/>
+                    : null
+            }
+
         </div>
     )
 }

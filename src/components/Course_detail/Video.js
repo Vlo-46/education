@@ -1,12 +1,17 @@
 import React from 'react'
 
-const CourseDetailVideo = () => {
+const CourseDetailVideo = ({video}) => {
     return (
-        <div>
-            <iframe width="100%" height="560" src="https://www.youtube.com/embed/juKd26qkNAw"
-                    title="YouTube video player" frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen/>
+        <div className={'w-100'}>
+            {
+                video.map(v => (
+                    <div
+                        key={v.id}
+                        dangerouslySetInnerHTML={{__html: v.video}}
+                        style={{height: "300px", marginBottom: "15px"}}
+                    />
+                ))
+            }
         </div>
     )
 }

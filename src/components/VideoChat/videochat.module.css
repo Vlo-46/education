@@ -136,16 +136,14 @@
 
 .instrumentButtonEndCall {
     margin-left: 5px;
-    background-color: #e60c0c;
+    background-color: #373A3E;
     color: #E8E8E9;
-    border: 1px solid #e60c0c;
     height: 70px;
 }
 
 .instrumentButtonEndCall:hover {
-    background-color: #E8E8E9;
+    background-color: #e60c0c;
     color: #e60c0c;
-    border: 1px solid #e60c0c;
     transition: 0.5s;
 }
 

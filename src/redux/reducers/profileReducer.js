@@ -1,9 +1,10 @@
 import {
-    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION,
+    ALL_FREE_TIMES,
+    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
     DELETE_MESSAGE,
     GET_CANDIDATE,
     GET_MESSAGES,
-    GET_TEACHER,
+    GET_TEACHER, SAVE_CREATED_TIMES,
     SEND_MESSAGE,
     TEACHER_CREATE_EDUCATION,
     TEACHER_CREATE_PHONE, TEACHER_CREATE_VIDEO,
@@ -46,7 +47,8 @@ const initialState = {
     teacherAddress: null,
     teacherPhone: [],
     teacherVideo: [],
-    notification: []
+    notification: [],
+    freeHours: {}
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -96,6 +98,29 @@ export const profileReducer = (state = initialState, action) => {
             notItem.status = action.payload.status
             state.notification.filter(i => i.id !== action.payload.notification_id)
             return {...state, notification: [...state.notification, {...notItem}]}
+        case ALL_FREE_TIMES:
+            return {...state, freeHours: action.payload}
+        case CREATE_FREE_TIME:
+            let obj = state.freeHours
+            if (action.payload.weekday in obj) {
+                obj[action.payload.weekday].push(action.payload)
+            } else {
+                obj[action.payload.weekday] = []
+                obj[action.payload.weekday].push(action.payload)
+            }
+            return {
+                ...state,
+                freeHours: obj
+            }
+        case DELETE_CREATED_FREE_TIME:
+            let todo = state.freeHours
+            todo[action.payload.day].filter(i => i.id !== action.payload.id)
+            return {
+                ...state,
+                freeHours: todo
+            }
+        case SAVE_CREATED_TIMES:
+            return {...state, freeTimes: action.payload}
         default:
             return state
     }

@@ -1,9 +1,10 @@
 import {
-    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION,
+    ALL_FREE_TIMES,
+    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
     DELETE_MESSAGE,
     GET_CANDIDATE,
-    GET_MESSAGES,
-    SEND_MESSAGE, TEACHER_CREATE_ADDRESS,
+    GET_MESSAGES, HIDE_PROFILE_LOADER, SAVE_CREATED_TIMES,
+    SEND_MESSAGE, SHOW_PROFILE_LOADER, TEACHER_CREATE_ADDRESS,
     TEACHER_CREATE_CERTIFICATE,
     TEACHER_CREATE_EDUCATION, TEACHER_CREATE_PHONE, TEACHER_CREATE_VIDEO,
     TEACHER_CREATE_WORK_EXPERIENCE,
@@ -15,9 +16,23 @@ import keys from "../../keys";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+export function showProfileLoader() {
+    return {
+        type: SHOW_PROFILE_LOADER
+    }
+}
+
+export function hideProfileLoader() {
+    return {
+        type: HIDE_PROFILE_LOADER
+    }
+}
+
 export function changeProfileMenu(name) {
     return dispatch => {
+        dispatch(showProfileLoader())
         dispatch({type: CHANGE_PROFILE_MENU, payload: name})
+        dispatch(hideProfileLoader())
     }
 }
 
@@ -61,6 +76,7 @@ export function deleteMessage(id) {
 
 export function getTeacher(auth) {
     return dispatch => {
+        dispatch(showProfileLoader())
         axios.get(`${keys.BACKEND_URI}/profile/teacher/get_teacher`, {
             headers: {
                 'Authorization': `Bearer ${auth.token}`
@@ -68,6 +84,7 @@ export function getTeacher(auth) {
         })
             .then(res => {
                 dispatch({type: GET_CANDIDATE, payload: res.data})
+                dispatch(hideProfileLoader())
             })
             .catch(e => {
                 console.log(e)
@@ -494,5 +511,107 @@ export function checkNotificationRequest(data) {
                     timer: 1500
                 })
             })
+    }
+}
+
+// free times
+
+export function allFreeHours() {
+    let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
+    return dispatch => {
+        axios.get(`${keys.BACKEND_URI}/profile/teacher/get_free_hours`, {
+            headers: {
+                Authorization: `Bearer ${candidate.token}`
+            }
+        })
+            .then(res => {
+                dispatch({type: ALL_FREE_TIMES, payload: res.data})
+            })
+    }
+}
+
+export function createFreeTime(data) {
+    return dispatch => {
+        let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
+        axios.post(`${keys.BACKEND_URI}/profile/teacher/create_free_hours`, data, {
+            headers: {
+                Authorization: `Bearer ${candidate.token}`
+            }
+        })
+            .then(res => {
+                dispatch({type: CREATE_FREE_TIME, payload: res.data})
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    timer: 1500
+                })
+            })
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    timer: 1500
+                })
+            })
+
+    }
+}
+
+export function deleteCreatedFreeTime(data) {
+    let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
+    return dispatch => {
+        axios.post(`${keys.BACKEND_URI}/profile/teacher/delete_free_hours`, {id: data.id}, {
+            headers: {
+                Authorization: `Bearer ${candidate.token}`
+            }
+        })
+            .then(res => {
+                if (res.data.msg === 'error') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        timer: 1500
+                    })
+                } else {
+                    dispatch({type: DELETE_CREATED_FREE_TIME, payload: data})
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        timer: 1500
+                    })
+                }
+            })
+    }
+}
+
+export function saveCreatedTimes(data) {
+    let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
+    return dispatch => {
+        axios.post(`${keys.BACKEND_URI}/profile/teacher/create_free_times`, data, {
+            headers: {
+                Authorization: `Bearer ${candidate.token}`
+            }
+        })
+            .then(res => {
+                dispatch({type: SAVE_CREATED_TIMES, payload: res.data})
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    timer: 1500
+                })
+            })
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    timer: 1500
+                })
+            })
+        console.log(data)
     }
 }

@@ -12,6 +12,7 @@ import {rootReducer} from './redux/rootReducer'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init();
 
 const store = createStore(rootReducer, compose(

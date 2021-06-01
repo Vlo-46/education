@@ -1,18 +1,32 @@
 import React, {useState, useEffect, useRef} from 'react'
 import styles from './videochat.module.css'
+import openSocket from "socket.io-client";
+import keys from "../../keys";
+import {useDispatch} from "react-redux";
+// import {useSelector} from "react-redux";
 
-const VideoField = () => {
+const VideoField = ({candidate, roomId}) => {
     const [cameraIcon, setCameraIcon] = useState(true)
     const [microphoneIcon, setMicrophone] = useState(false)
     const [displayMedia, setDisplayMedia] = useState(false)
+
+    let dispatch = useDispatch()
 
     const videoRef = useRef(null);
     const userVideoRef = useRef(null)
     const displayMediaRef = useRef(null)
     useEffect(() => {
+        let socket = openSocket(keys.ENDPOINT, {transports: ['websocket']})
+        socket.on('streamData', data => {
+            console.log(data)
+        })
         getUserVideo()
-    }, [videoRef, userVideoRef, displayMediaRef, cameraIcon, microphoneIcon, displayMedia]);
+    }, [videoRef, userVideoRef, displayMediaRef, cameraIcon, microphoneIcon, displayMedia, dispatch]);
 
+
+    // let roomUsers = useSelector(state => state.roomChat.roomUsers)
+
+    // console.log(roomUsers)
 
     async function startCapture() {
         navigator.mediaDevices.getDisplayMedia({
@@ -27,20 +41,21 @@ const VideoField = () => {
             })
     }
 
-
     const getVideo = () => {
+        let socket = openSocket(keys.ENDPOINT, {transports: ['websocket']})
         navigator.mediaDevices
             .getUserMedia({
                 video: cameraIcon,
                 audio: microphoneIcon,
             })
             .then(stream => {
+                socket.emit('stream', {candidateId: candidate.id, streamId: stream.id, roomId})
                 let video = videoRef.current;
                 video.srcObject = stream;
                 video.play();
             })
-            .catch(err => {
-                console.error("error:", err);
+            .catch(e => {
+                console.error("error:", e);
             });
     };
     getVideo();
@@ -56,8 +71,8 @@ const VideoField = () => {
                 video.srcObject = stream;
                 video.play();
             })
-            .catch(err => {
-                console.error("error:", err);
+            .catch(e => {
+                console.error("error:", e);
             });
     }
 
@@ -94,7 +109,7 @@ const VideoField = () => {
                 <button className={`btn ${styles.instrumentButton}`}
                         onClick={() => startScreenCapture(displayMedia)}
                 >
-                    <img src="assets/icons/demostration.svg" alt="demostration"/>
+                    <img src="assets/icons/demostration.svg" alt="demonstration"/>
                 </button>
                 <button className={`btn ${styles.instrumentButtonEndCall}`}>
                     <img src="assets/icons/end-call.svg" alt="end-call"/>

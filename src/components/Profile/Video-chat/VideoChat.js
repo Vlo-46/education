@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from 'react-router-dom'
+import openSocket from "socket.io-client";
+
 import Layout from "../../../layout/Layout";
-import keys from "../../../keys";
-import {getTeacher} from "../../../redux/actions/profileAction";
 import VideoField from "../../VideoChat/VideoField";
 import VideoMessagesField from "../../VideoChat/VideoMessagesField";
-import openSocket from "socket.io-client";
+
+import {getTeacher} from "../../../redux/actions/profileAction";
 import {roomUsers} from "../../../redux/actions/roomChatAction";
+import keys from "../../../keys";
 
 const VideoChat = () => {
 
@@ -45,7 +47,7 @@ const VideoChat = () => {
                     ? <div className="mt-5 mb-5" style={{marginLeft: "100px", marginRight: "100px"}}>
                         <div className="row">
                             <div className="col-md-7">
-                                <VideoField/>
+                                <VideoField candidate={candidate} roomId={id}/>
                             </div>
                             <div className="col-md-5">
                                 <VideoMessagesField candidate={candidate}/>
@@ -58,4 +60,4 @@ const VideoChat = () => {
     )
 }
 
-export default VideoChat
+export default VideoChat;

@@ -3,6 +3,7 @@ import styles from './profile_layout.module.css'
 import Menu from "../components/Profile/Menu/Menu";
 
 const ProfileLayout = ({currentComponent, candidate}) => {
+
     return (
         <div style={{backgroundColor: '#FAFAFB'}}>
             <div className={styles.container}>
@@ -16,5 +17,4 @@ const ProfileLayout = ({currentComponent, candidate}) => {
         </div>
     )
 }
-
 export default ProfileLayout

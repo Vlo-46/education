@@ -1,35 +1,55 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './reviews.module.css'
+import axios from "axios";
+import keys from "../../keys";
 
-const Review = () => {
+const Review = ({review}) => {
+    const [user, setUser] = useState(null)
+    useEffect(() => {
+        axios.get(`${keys.BACKEND_URI}/auth/get_user`, {
+            params: {id: review.student_id}
+        })
+            .then(res => {
+                setUser(res.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }, [])
+
     return (
         <div className={'p-3'}>
             <div className={`${styles.review} p-5`}>
-                <div className={`${styles.header}`}>
-                    <div className={'d-flex align-items-center'}>
-                        <div>
-                            <img
-                                src="https://image.freepik.com/free-photo/the-charming-girl-stands-on-the-street_8353-5372.jpg"
-                                style={{width: '80px', height: '80px', borderRadius: '50%'}}
-                                alt={'img'}
-                            />
+                {
+                    user
+                        ? <div className={`${styles.header}`}>
+                            <div className={'d-flex align-items-center'}>
+                                <div>
+                                    {
+                                        user.image
+                                            ? <img src={user.image}
+                                                   alt={user.name}
+                                                   style={{width: '80px', height: '80px', borderRadius: '50%'}}
+                                            />
+                                            : <img src="assets/images/no-photo.png"
+                                                   alt={user.name}
+                                                   style={{width: '80px', height: '80px', borderRadius: '50%'}}
+                                            />
+                                    }
+                                </div>
+                                <div>
+                                    <p style={{color: '#707070', paddingLeft: '5px'}}>{user.name}&nbsp;{user.surname}</p>
+                                </div>
+                            </div>
+                            <div className={'d-flex align-items-center'}>
+                                <img src="assets/icons/quote.png" alt="quote"/>
+                                <img src="assets/icons/quote.png" alt="quote"/>
+                            </div>
                         </div>
-                        <div>
-                            <p style={{color: '#707070', paddingLeft: '5px'}}>Աննա Գրիգորյան</p>
-                        </div>
-                    </div>
-                    <div className={'d-flex align-items-center'}>
-                        <img src="assets/icons/quote.png" alt="quote"/>
-                        <img src="assets/icons/quote.png" alt="quote"/>
-                    </div>
-                </div>
+                        : null
+                }
                 <div className={styles.footer}>
-                    <p style={{color: '#707070'}}>
-                        Ուսուցման որակը բարձր է ։Անչափ շնորհակալ
-                        ենք ստացած գիտելիքի համար:Ուսուցման որակը
-                        բարձր է ։Անչափ շնորհակալ ենք ստացած
-                        գիտելիքի համար
-                    </p>
+                    <p style={{color: '#707070'}}>{review.review}</p>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import styles from './room.module.css'
 const shortid = require('shortid');
 
-const RoomAlert = () => {
+const RoomAlert = ({CLOSE_MODAL}) => {
     const [roomId, setRoomId] = useState(shortid.generate())
     let url = window.location.origin
 
@@ -45,6 +45,7 @@ const RoomAlert = () => {
                         <button type="button"
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
+                                onClick={() => CLOSE_MODAL(false)}
                         >
                             Փակել
                         </button>

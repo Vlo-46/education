@@ -19,6 +19,7 @@ import ProfileLoader from "../components/Profile/ProfileLoader/ProfileLoader";
 
 const Profile = () => {
     const [teacherProfession, setTeacherProfession] = useState(null)
+
     let dispatch = useDispatch()
     let candidate = useSelector(state => state.profile.candidate)
 
@@ -46,10 +47,12 @@ const Profile = () => {
             window.location.href = '/'
         }
     }, [])
+    // console.log(candidate)
 
 
     let menuTab = useSelector(state => state.profile.menuTab)
 
+    // console.log(candidate)
     let currentComponent = () => {
         if (candidate.role === 'student') {
             switch (menuTab) {
@@ -57,8 +60,12 @@ const Profile = () => {
                     return <Panel candidate={candidate}/>
                 case 'notifications':
                     return <Notifications candidate={candidate}/>
+                case 'room':
+                    return <Room candidate={candidate}/>
                 case 'messages':
                     return <Messages candidate={candidate}/>
+                case 'teachers':
+                    return <Students candidate={candidate}/>
                 case 'summery':
                     return <Summery candidate={candidate}/>
                 case 'settings':

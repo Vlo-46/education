@@ -46,28 +46,34 @@ const TeacherProfileHead = ({tab, candidate, teacherProfession}) => {
                         <span className={`${styles.accountBodyText}`}>
                             Ուսանողներ
                         </span>
-                        <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>16</p>
-                    </li>
-                    <li className="list-inline-item ml-4">
-                        <span className={`${styles.accountBodyText}`}>
-                            Վարկանիշ
-                        </span>
                         <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>
-                            <img src="assets/icons/star.png" alt="start"/>&nbsp;3․6&nbsp;Դ
+                            {
+                                candidate.friends.length
+                                    ? candidate.friends.length
+                                    : 0
+                            }
                         </p>
                     </li>
-                    <li className="list-inline-item ml-4">
-                        <span className={`${styles.accountBodyText}`}>
-                            Հաշիվ
-                        </span>
-                        <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>4500&nbsp;Դ</p>
-                    </li>
-                    <li className="list-inline-item ml-4">
-                        <span className={`${styles.accountBodyText}`}>
-                            Միավորներ
-                        </span>
-                        <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>16</p>
-                    </li>
+                    {/*<li className="list-inline-item ml-4">*/}
+                    {/*    <span className={`${styles.accountBodyText}`}>*/}
+                    {/*        Վարկանիշ*/}
+                    {/*    </span>*/}
+                    {/*    <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>*/}
+                    {/*        <img src="assets/icons/star.png" alt="start"/>&nbsp;3․6&nbsp;Դ*/}
+                    {/*    </p>*/}
+                    {/*</li>*/}
+                    {/*<li className="list-inline-item ml-4">*/}
+                    {/*    <span className={`${styles.accountBodyText}`}>*/}
+                    {/*        Հաշիվ*/}
+                    {/*    </span>*/}
+                    {/*    <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>4500&nbsp;Դ</p>*/}
+                    {/*</li>*/}
+                    {/*<li className="list-inline-item ml-4">*/}
+                    {/*    <span className={`${styles.accountBodyText}`}>*/}
+                    {/*        Միավորներ*/}
+                    {/*    </span>*/}
+                    {/*    <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>16</p>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </div>

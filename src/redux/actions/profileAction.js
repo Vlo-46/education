@@ -1,10 +1,10 @@
 import {
     ALL_FREE_TIMES,
-    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
+    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CLOSE_WINDOW_MESSAGE_FIELD, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
     DELETE_MESSAGE,
     GET_CANDIDATE,
-    GET_MESSAGES, HIDE_PROFILE_LOADER, SAVE_CREATED_TIMES,
-    SEND_MESSAGE, SHOW_PROFILE_LOADER, TEACHER_CREATE_ADDRESS,
+    GET_MESSAGES, HIDE_PROFILE_LOADER, OPEN_WINDOW_MESSAGE_FIELD, SAVE_CREATED_TIMES,
+    SEND_MESSAGE, SET_NOTIFICATION, SHOW_PROFILE_LOADER, TEACHER_CREATE_ADDRESS,
     TEACHER_CREATE_CERTIFICATE,
     TEACHER_CREATE_EDUCATION, TEACHER_CREATE_PHONE, TEACHER_CREATE_VIDEO,
     TEACHER_CREATE_WORK_EXPERIENCE,
@@ -83,14 +83,14 @@ export function getTeacher(auth) {
             }
         })
             .then(res => {
-                dispatch({type: GET_CANDIDATE, payload: res.data})
+                res.data.user['friends'] = res.data.friends
+                dispatch({type: GET_CANDIDATE, payload: res.data.user})
                 dispatch(hideProfileLoader())
             })
             .catch(e => {
                 console.log(e)
             })
     }
-
 }
 
 export function teacherCreateEducation(data) {
@@ -478,39 +478,14 @@ export function teacherDeleteVideo(id) {
 // notifications
 
 export function checkNotificationRequest(data) {
-    let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
     return dispatch => {
-        axios.post(`${keys.BACKEND_URI}/profile/teacher/check_request`, data, {
-            headers: {
-                Authorization: `Bearer ${candidate.token}`
-            }
-        })
-            .then(res => {
-                if (res.data.msg === 'ok') {
-                    dispatch({type: CHECK_NOTIFICATION, payload: data})
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        timer: 1500
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        timer: 1500
-                    })
-                }
-            })
-            .catch(e => {
-                console.log(e)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    timer: 1500
-                })
-            })
+        dispatch({type: CHECK_NOTIFICATION, payload: data})
+    }
+}
+
+export function setNotification(data) {
+    return dispatch => {
+        dispatch({type: SET_NOTIFICATION, payload: data})
     }
 }
 
@@ -613,5 +588,30 @@ export function saveCreatedTimes(data) {
                 })
             })
         console.log(data)
+    }
+}
+
+export function openWindowMessageField(id) {
+    let candidate = JSON.parse(localStorage.getItem(keys.AUTH))
+    return dispatch => {
+        axios.get(`${keys.BACKEND_URI}/auth/get_user`, {
+            headers: {
+                'Authorization': `Bearer ${candidate.token}`
+            },
+            params: {id}
+        })
+            .then(res => {
+                console.log(res.data)
+                dispatch({type: OPEN_WINDOW_MESSAGE_FIELD, payload: res.data})
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+}
+
+export function closeWindowMessageField(bool) {
+    return dispatch => {
+        dispatch({type: CLOSE_WINDOW_MESSAGE_FIELD, payload: bool})
     }
 }

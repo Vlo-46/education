@@ -19,7 +19,7 @@ const FreeTimes = ({freeHours, candidateId}) => {
     ]
 
     let free_hours = {}
-    let filteredFreeHours = freeHours.filter(i => i.free === false)
+    let filteredFreeHours = freeHours.filter(i => i.free !== false)
     filteredFreeHours.forEach(f => {
         if (f.weekday in free_hours) {
             free_hours[f.weekday].push(f);
@@ -69,7 +69,7 @@ const FreeTimes = ({freeHours, candidateId}) => {
         let obj = {
             token: user.token,
             candidateId,
-            data: selectedHours
+            selected_hours: selectedHours
         }
         socket.emit('send course request', obj)
     }

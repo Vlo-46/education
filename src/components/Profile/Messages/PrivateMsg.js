@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getAllMessages} from "../../../redux/actions/profileAction";
 import axios from "axios";
 
-const PrivateMsg = ({candidateId}) => {
+const PrivateMsg = ({userId}) => {
     const [candidate, setCandidate] = useState(null)
 
     let scrollStyle = {
@@ -20,7 +20,7 @@ const PrivateMsg = ({candidateId}) => {
         let socket = openSocket(ENDPOINT, {transports: ['websocket']})
         let user = JSON.parse(localStorage.getItem(keys.AUTH))
         let data = {
-            candidateId,
+            candidateId: userId,
             someId: user.id
         }
         socket.emit('all messages', data)
@@ -33,7 +33,7 @@ const PrivateMsg = ({candidateId}) => {
                 Authorization: `Bearer ${user.token}`
             },
             params: {
-                id: candidateId
+                id: userId
             }
         })
             .then(res => {
@@ -43,11 +43,10 @@ const PrivateMsg = ({candidateId}) => {
                 alert('Error')
             })
 
-    }, [candidateId, dispatch])
+    }, [userId, dispatch])
 
     const allMessages = useSelector(state => state.profile.messages)
 
-    // console.log(`private message field - ${candidateId}`)
 
     return (
         <div className={styles.privateMsg}>
@@ -85,7 +84,11 @@ const PrivateMsg = ({candidateId}) => {
             <div className={styles.msgBody} style={scrollStyle}>
                 {
                     allMessages.length
-                        ? allMessages.map(m => <Message key={m.id} message={m} candidateId={candidateId}/>)
+                        ? allMessages.map(m => <Message key={m.id}
+                                                        message={m}
+                                                        candidateId={userId}
+                                                        candidate={candidate}
+                        />)
                         : null
                 }
 

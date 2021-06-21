@@ -10,6 +10,7 @@ import Lesson from "./Lesson";
 import Schedule from "./Schedule";
 import keys from "../../../keys";
 import axios from "axios";
+import {useSelector} from "react-redux";
 
 const Panel = ({candidate}) => {
     const [teacherProfession, setTeacherProfession] = useState(null)
@@ -29,11 +30,20 @@ const Panel = ({candidate}) => {
             })
     }, [candidate.id])
 
-    let onlineStudents = [
-        {id: 1, username: 'Սոնա Սիմոնյան', image: 'assets/images/teacher-1.png'},
-        {id: 2, username: 'Նարեկ Խաչատրյան', image: 'assets/images/teacher-2.png'},
-        {id: 3, username: 'Աննա Կարապետյան', image: 'assets/images/teacher-1.png'},
-    ]
+
+    console.log(candidate)
+    let friends = useSelector(state => state.profile.friends)
+    let notifications = useSelector(state => state.profile.notification)
+
+    let lessons = []
+    notifications.forEach(notification => {
+        if (notification.status == 'approved') {
+            lessons.push(notification.Lessons_hour)
+        }
+    })
+
+    console.log(lessons)
+
     return (
         <div className={styles.panelWrapperBox}>
             <div className="row">
@@ -46,8 +56,12 @@ const Panel = ({candidate}) => {
                     <div className="profileBody mt-5 mb-5 pl-2">
                         <div className="row">
                             <div className="col-md-4">
-                                <ProgressBar/>
-                                <ProfileInfo/>
+                                <ProgressBar candidate={candidate}/>
+                                <ProfileInfo educations={candidate.Teacher_educations}
+                                             phones={candidate.Teacher_phones}
+                                             address={candidate.TeacherAddresses}
+                                             work_experiences={candidate.Teacher_work_experiences}
+                                />
                             </div>
                             <div className="col-md-8">
                                 <div className={'d-flex justify-content-between'}>
@@ -78,7 +92,9 @@ const Panel = ({candidate}) => {
                     <p className={styles.chatTitle}>Ուսանողներ</p>
                     <div className={`${styles.onlineStudentsField}`}>
                         {
-                            onlineStudents.map(student => <OnlineStudent student={student} key={student.id}/>)
+                            friends.length
+                                ? friends.map(friend => <OnlineStudent friend={friend} key={friend.id}/>)
+                                : null
                         }
                     </div>
                     <SearchStudents/>

@@ -1,20 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './notifications.module.css';
 import OnlineStudent from "./OnlineStudent";
 import Notification from "./Notification";
 import NotificationPagination from "./NotificationPagination";
 import SearchStudents from "./SearchStudents";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import openSocket from "socket.io-client";
+import keys from "../../../keys";
+import {checkNotificationRequest, setNotification} from "../../../redux/actions/profileAction";
 
-const Notifications = () => {
-    let onlineStudents = [
-        {id: 1, username: 'Սոնա Սիմոնյան', image: 'assets/images/teacher-1.png'},
-        {id: 2, username: 'Նարեկ Խաչատրյան', image: 'assets/images/teacher-2.png'},
-        {id: 3, username: 'Աննա Կարապետյան', image: 'assets/images/teacher-1.png'},
-    ]
+const Notifications = ({candidate}) => {
+    let dispatch = useDispatch()
+    useEffect(() => {
+        let socket = openSocket(keys.ENDPOINT, {transports: ['websocket']})
+        socket.on('new notification', data => {
+            dispatch(setNotification(data))
+        })
+        socket.on('checked notification', data => {
+            if (data.msg == 'ok') {
+                dispatch(checkNotificationRequest({notification_id: data.notification_id, status: data.status}))
+            } else {
+                alert('error')
+            }
+        })
+    }, [])
 
     let notifications = useSelector(state => state.profile.notification)
-
+    let friends = useSelector(state => state.profile.friends)
+    console.log(notifications)
+    // console.log(candidate)
     return (
         <>
             <div className={'row'}>
@@ -24,7 +38,9 @@ const Notifications = () => {
                         {
                             notifications.length
                                 ? notifications.map(notification => <Notification key={notification.id}
-                                                                                  notification={notification}/>)
+                                                                                  notification={notification}
+                                                                                  candidate={candidate}
+                                />)
                                 : null
                         }
                     </div>
@@ -34,7 +50,9 @@ const Notifications = () => {
                     <p className={styles.chatTitle}>Ուսանողներ</p>
                     <div className={`${styles.onlineStudentsField}`}>
                         {
-                            onlineStudents.map(student => <OnlineStudent student={student} key={student.id}/>)
+                            friends.length
+                                ? friends.map(friend => <OnlineStudent friend={friend} key={friend.id}/>)
+                                : null
                         }
                     </div>
                     <SearchStudents/>

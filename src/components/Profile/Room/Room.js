@@ -1,42 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import RoomItem from "./RoomItem";
 import styles from './room.module.css'
+import {useSelector} from "react-redux";
 
-const Room = () => {
-    let roomItems = [
-        {
-            id: 1,
-            student: {name: 'Քրիստինե', surname: 'Կառլենյան', image: 'assets/images/teacher-1.png'},
-            date: '23.04.2021',
-            time: '10:00-11:00',
-            training: 6,
-            status: true
-        },
-        {
-            id: 2,
-            student: {name: 'Կարեն', surname: 'Կարապետյան', image: 'assets/images/teacher-2.png'},
-            date: '23.04.2021',
-            time: '11:00-12:00',
-            training: 5,
-            status: false
-        },
-        {
-            id: 3,
-            student: {name: 'Մարինե', surname: 'Սանոսյան', image: 'assets/images/teacher-1.png'},
-            date: '23.04.2021',
-            time: '14:00-15:00',
-            training: 4,
-            status: false
-        },
-        {
-            id: 4,
-            student: {name: 'Համազասպ', surname: 'Միլիտոսյան', image: 'assets/images/teacher-2.png'},
-            date: '23.04.2021',
-            time: '15:00-16:00',
-            training: 3,
-            status: false
-        },
-    ]
+const Room = ({candidate}) => {
+    let notifications = useSelector(state => state.profile.notification)
 
     return (
         <div className={'p-4'}>
@@ -53,8 +21,16 @@ const Room = () => {
                     </tr>
                     </thead>
                     <tbody>
+
                     {
-                        roomItems.map(roomItem => <RoomItem key={roomItem.id} roomItem={roomItem}/>)
+                        notifications.length
+                            ? notifications.map(notification => (
+                                <RoomItem key={notification.id}
+                                          lessons={notification.Lessons_hour}
+                                          candidateId={candidate.id}
+                                />
+                            ))
+                            : null
                     }
 
                     </tbody>

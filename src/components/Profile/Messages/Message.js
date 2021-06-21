@@ -5,7 +5,7 @@ import keys from "../../../keys";
 import {useDispatch} from "react-redux";
 import {deleteMessage} from "../../../redux/actions/profileAction";
 
-const Message = ({candidateId, message}) => {
+const Message = ({candidateId, message, candidate}) => {
     let messageStyle = {
         justifyContent: 'flex-end'
     }
@@ -30,9 +30,19 @@ const Message = ({candidateId, message}) => {
         <div className={`form-group ${styles.messageField} mt-2 mb-2 p-3`}
              style={candidateId === message.sender_id ? messageStyle : null}
         >
-            <div className={styles.candidateImg}>
-                <img src="assets/images/teacher-2.png" alt="teacher"/>
-            </div>
+            {
+                candidate.id === message.sender_id
+                    ? <div className={styles.candidateImg}>
+                        {
+                            candidate.image
+                            ? <img src={candidate.image} alt={candidate.name}/>
+                            : <img src="assets/images/no-photo.png" alt={candidate.name}/>
+                        }
+
+                    </div>
+                    : null
+            }
+
             <div className={`${styles.singleMsg}`}>
                 {message.message}
             </div>

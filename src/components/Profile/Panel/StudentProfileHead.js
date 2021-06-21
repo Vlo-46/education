@@ -31,10 +31,22 @@ const StudentProfileHead = ({tab, candidate}) => {
                 <ul className="list-inline mb-0">
                     <li className="list-inline-item ml-4">
                         <span className={`${styles.accountBodyText}`}>
-                            Հաշիվ
+                            Ընկերներ
                         </span>
-                        <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>4500&nbsp;Դ</p>
+                        <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>
+                            {
+                                candidate.friends.length
+                                    ? candidate.friends.length
+                                    : 0
+                            }
+                        </p>
                     </li>
+                    {/*<li className="list-inline-item ml-4">*/}
+                    {/*    <span className={`${styles.accountBodyText}`}>*/}
+                    {/*        Հաշիվ*/}
+                    {/*    </span>*/}
+                    {/*    <p className={`mb-0 d-block pt-2 ${styles.accountBodyText}`}>4500&nbsp;Դ</p>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </div>

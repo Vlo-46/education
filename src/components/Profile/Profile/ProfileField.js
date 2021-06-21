@@ -22,12 +22,6 @@ const ProfileField = ({candidate, tab, teacherProfession}) => {
 
     let dispatch = useDispatch()
 
-    let onlineStudents = [
-        {id: 1, username: 'Սոնա Սիմոնյան', image: 'assets/images/teacher-1.png'},
-        {id: 2, username: 'Նարեկ Խաչատրյան', image: 'assets/images/teacher-2.png'},
-        {id: 3, username: 'Աննա Կարապետյան', image: 'assets/images/teacher-1.png'},
-    ]
-
     let education = useSelector(state => state.profile.teacherEducation)
     let certificates = useSelector(state => state.profile.teacherCertificate)
     let workExperience = useSelector(state => state.profile.teacherWorkExperience)
@@ -67,6 +61,8 @@ const ProfileField = ({candidate, tab, teacherProfession}) => {
     let CLOSE_MODAL = bool => {
         setOpenModal(bool)
     }
+
+    let friends = useSelector(state => state.profile.friends)
 
     return (
         <div className={'row'}>
@@ -563,7 +559,9 @@ const ProfileField = ({candidate, tab, teacherProfession}) => {
                 <p className={styles.chatTitle}>Ուսանողներ</p>
                 <div className={`${styles.onlineStudentsField}`}>
                     {
-                        onlineStudents.map(student => <OnlineStudent student={student} key={student.id}/>)
+                        friends.length
+                            ? friends.map(friend => <OnlineStudent friend={friend} key={friend.id}/>)
+                            : null
                     }
                 </div>
                 <SearchStudents/>

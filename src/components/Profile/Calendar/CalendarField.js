@@ -24,10 +24,10 @@ const CalendarField = () => {
     console.log(freeHours)
 
     let freeStyle = {
-        color: 'green'
+        color: 'red'
     }
     let dontFree = {
-        color: "red"
+        color: "green"
     }
 
     return (

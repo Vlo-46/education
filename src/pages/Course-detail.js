@@ -24,7 +24,6 @@ const CourseDetail = () => {
             .then(res => {
                 setCandidate(res.data)
                 dispatch(hideProfileLoader())
-                console.log(res.data)
             })
             .catch(e => {
                 console.log(e)

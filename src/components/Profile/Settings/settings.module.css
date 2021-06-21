@@ -2,3 +2,48 @@
     cursor: pointer;
     color: #000D83;
 }
+
+.modalWindow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+
+
+.formField input, .formField select, .formField select option {
+    background-color: #F1F5FC;
+}
+
+.formField input:focus, .formField select:focus, .formField select option {
+    background-color: #F1F5FC;
+}
+
+.inputError {
+    border-color: red;
+}
+
+.inputSuccess {
+    border-color: green;
+}
+
+.inputLeftIcon {
+    position: absolute;
+    padding: 10px;
+    left: 0;
+    cursor: pointer;
+    top: 0;
+}
+
+.inputRightIcon {
+    position: absolute;
+    padding: 10px;
+    right: 0;
+    cursor: pointer;
+    top: 0;
+}

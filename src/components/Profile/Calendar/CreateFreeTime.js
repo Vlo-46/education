@@ -14,6 +14,7 @@ const CreateFreeTime = ({selectedWeekday}) => {
 
     let START_TIME = e => {
         setStartTime(e.target.value)
+        console.log(e.target.value)
         let firstPart = e.target.value.split(':')[0]
         let lastPart = e.target.value.split(':')[1]
         let finishTime = Number(firstPart * 60) + Number(lastPart) + 50;

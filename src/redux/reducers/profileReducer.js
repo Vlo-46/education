@@ -1,11 +1,11 @@
 import {
     ALL_FREE_TIMES,
-    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
+    CHANGE_PROFILE_MENU, CHECK_NOTIFICATION, CLOSE_WINDOW_MESSAGE_FIELD, CREATE_FREE_TIME, DELETE_CREATED_FREE_TIME,
     DELETE_MESSAGE,
     GET_CANDIDATE,
     GET_MESSAGES,
-    GET_TEACHER, SAVE_CREATED_TIMES,
-    SEND_MESSAGE,
+    GET_TEACHER, OPEN_WINDOW_MESSAGE_FIELD, SAVE_CREATED_TIMES,
+    SEND_MESSAGE, SET_NOTIFICATION,
     TEACHER_CREATE_EDUCATION,
     TEACHER_CREATE_PHONE, TEACHER_CREATE_VIDEO,
     TEACHER_CREATE_WORK_EXPERIENCE,
@@ -30,8 +30,10 @@ const initialState = {
         student: [
             {id: 1, title: 'Վահանակ', name: 'panel', active: false, icon: 'assets/icons/panel.svg'},
             {id: 2, title: 'Ծանուցումներ', name: 'notifications', active: false, icon: 'assets/icons/alarm.svg'},
+            {id: 3, title: 'Դասասենյակ', name: 'room', active: false, icon: 'assets/icons/chat.svg'},
             {id: 4, title: 'Նամակներ', name: 'messages', active: false, icon: 'assets/icons/message.svg'},
             {id: 10, title: 'Պրոֆիլ', name: 'profile', active: false, icon: 'assets/icons/menu-profile.svg'},
+            {id: 5, title: 'Դասատուներ', name: 'teachers', active: false, icon: 'assets/icons/students.svg'},
             {id: 8, title: 'Հաշիվ', name: 'summery', active: false, icon: 'assets/icons/summary.svg'},
             {id: 9, title: 'Կարգավորումներ', name: 'settings', active: false, icon: 'assets/icons/settings.svg'},
         ]
@@ -48,7 +50,8 @@ const initialState = {
     teacherPhone: [],
     teacherVideo: [],
     notification: [],
-    freeHours: {}
+    freeHours: {},
+    windowMessageField: null
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -67,7 +70,8 @@ export const profileReducer = (state = initialState, action) => {
                 teacherAddress: action.payload['TeacherAddresses'],
                 teacherPhone: action.payload['Teacher_phones'],
                 teacherVideo: action.payload['Teacher_videos'],
-                notification: action.payload['Notifications']
+                notification: action.payload.role === 'teacher' ? action.payload['teacher_notification'] : action.payload['student_notification'],
+                friends: action.payload.friends
             }
         case GET_MESSAGES:
             return {...state, messages: action.payload}
@@ -94,10 +98,18 @@ export const profileReducer = (state = initialState, action) => {
         case TEACHER_DELETE_VIDEO:
             return {...state, teacherVideo: state.teacherVideo.filter(i => i.id !== action.payload)}
         case CHECK_NOTIFICATION:
-            let notItem = state.notification.filter(i => i.id === action.payload.notification_id)[0]
-            notItem.status = action.payload.status
-            state.notification.filter(i => i.id !== action.payload.notification_id)
-            return {...state, notification: [...state.notification, {...notItem}]}
+            let newArray = []
+            for (let i = 0; i < state.notification.length; i++) {
+                if (state.notification[i].id === action.payload.notification_id) {
+                    console.log(true)
+                    state.notification[i].status = action.payload.status
+                    state.notification[i].seen = true
+                }
+                newArray.push(state.notification[i])
+            }
+            return {...state, notification: newArray}
+        case SET_NOTIFICATION:
+            return {...state, notification: [...state.notification, {...action.payload}]}
         case ALL_FREE_TIMES:
             return {...state, freeHours: action.payload}
         case CREATE_FREE_TIME:
@@ -121,6 +133,10 @@ export const profileReducer = (state = initialState, action) => {
             }
         case SAVE_CREATED_TIMES:
             return {...state, freeTimes: action.payload}
+        case OPEN_WINDOW_MESSAGE_FIELD:
+            return {...state, windowMessageField: action.payload}
+        case CLOSE_WINDOW_MESSAGE_FIELD:
+            return {...state, windowMessageField: action.payload}
         default:
             return state
     }

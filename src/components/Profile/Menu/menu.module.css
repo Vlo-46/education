@@ -48,6 +48,14 @@
 .menuFields li {
     display: flex;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.notCount {
+    position: absolute;
+    right: 5px;
+    color: #000d83;
+    align-self: center;
 }
 
 .menuFields li div {

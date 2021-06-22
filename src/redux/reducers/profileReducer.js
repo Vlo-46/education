@@ -16,10 +16,17 @@ import {
 const initialState = {
     menuTabs: {
         teacher: [
-            {id: 1, title: 'Վահանակ', name: 'panel', active: false, icon: 'assets/icons/panel.svg'},
-            {id: 2, title: 'Ծանուցումներ', name: 'notifications', active: false, icon: 'assets/icons/alarm.svg'},
+            {id: 1, title: 'Վահանակ', name: 'panel', active: false, icon: 'assets/icons/panel.svg',},
+            {
+                id: 2,
+                title: 'Ծանուցումներ',
+                name: 'notifications',
+                active: false,
+                icon: 'assets/icons/alarm.svg',
+                seen: null
+            },
             {id: 3, title: 'Դասասենյակ', name: 'room', active: false, icon: 'assets/icons/chat.svg'},
-            {id: 4, title: 'Նամակներ', name: 'messages', active: false, icon: 'assets/icons/message.svg'},
+            {id: 4, title: 'Նամակներ', name: 'messages', active: false, icon: 'assets/icons/message.svg', seen: null},
             {id: 10, title: 'Պրոֆիլ', name: 'profile', active: false, icon: 'assets/icons/menu-profile.svg'},
             {id: 5, title: 'Ուսանողներ', name: 'students', active: false, icon: 'assets/icons/students.svg'},
             {id: 6, title: 'Վարկանիշ', name: 'ratings', active: false, icon: 'assets/icons/favorite.svg'},
@@ -29,9 +36,16 @@ const initialState = {
         ],
         student: [
             {id: 1, title: 'Վահանակ', name: 'panel', active: false, icon: 'assets/icons/panel.svg'},
-            {id: 2, title: 'Ծանուցումներ', name: 'notifications', active: false, icon: 'assets/icons/alarm.svg'},
+            {
+                id: 2,
+                title: 'Ծանուցումներ',
+                name: 'notifications',
+                active: false,
+                icon: 'assets/icons/alarm.svg',
+                seen: null
+            },
             {id: 3, title: 'Դասասենյակ', name: 'room', active: false, icon: 'assets/icons/chat.svg'},
-            {id: 4, title: 'Նամակներ', name: 'messages', active: false, icon: 'assets/icons/message.svg'},
+            {id: 4, title: 'Նամակներ', name: 'messages', active: false, icon: 'assets/icons/message.svg', seen: null},
             {id: 10, title: 'Պրոֆիլ', name: 'profile', active: false, icon: 'assets/icons/menu-profile.svg'},
             {id: 5, title: 'Դասատուներ', name: 'teachers', active: false, icon: 'assets/icons/students.svg'},
             {id: 8, title: 'Հաշիվ', name: 'summery', active: false, icon: 'assets/icons/summary.svg'},
@@ -59,6 +73,40 @@ export const profileReducer = (state = initialState, action) => {
         case CHANGE_PROFILE_MENU:
             return {...state, menuTab: action.payload}
         case GET_CANDIDATE:
+            let seenArray = []
+            let menuTabsArray = []
+
+
+            if (action.payload.role === 'teacher') {
+                action.payload['teacher_notification'].forEach(not => {
+                    if (not.seen === false) {
+                        seenArray.push(not)
+                    }
+                })
+                if (seenArray.length) {
+                    state.menuTabs.teacher.forEach(i => {
+                        if (i.name === 'notifications') {
+                            i.seen = seenArray.length
+                        }
+                    })
+                }
+            } else {
+                action.payload['student_notification'].forEach(not => {
+                    if (not.seen === false) {
+                        seenArray.push(not)
+                    }
+                })
+                if (seenArray.length) {
+                    state.menuTabs.student.forEach(i => {
+                        if (i.name === 'notifications') {
+                            i.seen = seenArray.length
+                        }
+                    })
+                }
+            }
+
+            menuTabsArray = state.menuTabs
+
             return {
                 ...state,
                 candidate: action.payload,
@@ -71,7 +119,8 @@ export const profileReducer = (state = initialState, action) => {
                 teacherPhone: action.payload['Teacher_phones'],
                 teacherVideo: action.payload['Teacher_videos'],
                 notification: action.payload.role === 'teacher' ? action.payload['teacher_notification'] : action.payload['student_notification'],
-                friends: action.payload.friends
+                friends: action.payload.friends,
+                menuTabs: menuTabsArray
             }
         case GET_MESSAGES:
             return {...state, messages: action.payload}

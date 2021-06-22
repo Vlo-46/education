@@ -5,13 +5,10 @@ import {changeProfileMenu} from "../../../redux/actions/profileAction";
 import axios from "axios";
 import keys from "../../../keys";
 
+
 const Menu = ({candidate}) => {
     let menuTabs = useSelector(state => state.profile.menuTabs)
-    // let menuTab = useSelector(state => state.profile.menuTab)
 
-    // menuTabs.find(i => {
-    //     return i.name === menuTab ? i.active = true : i.active = false
-    // })
     const [teacherProfession, setTeacherProfession] = useState(null)
 
     let dispatch = useDispatch()
@@ -35,7 +32,6 @@ const Menu = ({candidate}) => {
     let CHANGE_FIELD = name => {
         dispatch(changeProfileMenu(name))
     }
-
 
     if (candidate.role === 'teacher') {
         return (
@@ -67,6 +63,7 @@ const Menu = ({candidate}) => {
                                     <li key={m.id} onClick={() => CHANGE_FIELD(m.name)}>
                                         <div><img src={m.icon} alt={m.name}/></div>
                                         <span style={m.active ? {color: 'blue'} : null}>{m.title}</span>
+                                        {m.seen ? <small className={styles.notCount}>+{m.seen}</small> : null}
                                     </li>
                                 ))
                             }

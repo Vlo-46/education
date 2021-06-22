@@ -27,8 +27,10 @@ const Notifications = ({candidate}) => {
 
     let notifications = useSelector(state => state.profile.notification)
     let friends = useSelector(state => state.profile.friends)
+
     console.log(notifications)
     // console.log(candidate)
+
     return (
         <>
             <div className={'row'}>

@@ -1,0 +1,17 @@
+{
+  "home_link": "Home",
+  "courses_link": "Courses",
+  "about_link": "About",
+  "blog_link": "Blog",
+  "contact_link": "Contact",
+  "contact": {
+    "name": "Name",
+    "surname": "Surname",
+    "phone": "Phone",
+    "email": "Email",
+    "your_message": "Your message"
+  },
+  "buttons": {
+    "send": "Send"
+  }
+}

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import styles from './notifications.module.css'
+import React, {useEffect, useState} from 'react';
+import styles from './notifications.module.css';
 import axios from "axios";
 import keys from "../../../keys";
 import openSocket from "socket.io-client";
-import moment from 'moment'
-import 'moment/locale/hy-am'
+import moment from 'moment';
+import 'moment/locale/hy-am';
 import NotificationModal from "./Modal";
 
 const Notification = ({notification, candidate}) => {
@@ -67,8 +67,6 @@ const Notification = ({notification, candidate}) => {
                 <div className={styles.notificationInfo}>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus at aut culpa excepturi ipsa
-                        iusto
-                        laborum natus sit totam voluptate ?
                     </p>
                 </div>
                 <div className={styles.processField}>
@@ -133,7 +131,7 @@ const Notification = ({notification, candidate}) => {
             <div className={styles.notificationsItem} style={notification.seen ? null : checkedStyle}>
                 {
                     user
-                        ? <div className={styles.notificationStudentField}>
+                        ? <div className={styles.notificationStudentBField}>
                             <div className={styles.notificationStudentImage}>
                                 {
                                     user.image

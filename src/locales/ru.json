@@ -1,0 +1,17 @@
+{
+  "home_link": "Главная",
+  "courses_link": "Курсы",
+  "about_link": "О нас",
+  "blog_link": "Блог",
+  "contact_link": "Контакт",
+  "contact": {
+    "name": "Имя",
+    "surname": "Фамилия",
+    "phone": "Телефон",
+    "email": "Эл. адрес",
+    "your_message": "Ваше сообщение"
+  },
+  "buttons": {
+    "send": "Отправить"
+  }
+}

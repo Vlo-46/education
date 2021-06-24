@@ -2,9 +2,12 @@ import React, {useState} from 'react'
 import styles from './navbar.module.css'
 import {Link} from 'react-router-dom'
 import keys from "../../keys";
+import {useTranslation} from "react-i18next";
 
 const NavBar = () => {
     const [searchedValue, setSearchedValue] = useState(null)
+
+    const {t, i18n} = useTranslation();
 
     function openLang(x) {
         let langItems = document.querySelectorAll(".lang-box span");
@@ -36,6 +39,15 @@ const NavBar = () => {
     let LOGOUT_HANDLER = () => {
         localStorage.removeItem(keys.AUTH);
         window.location.href = '/'
+    }
+
+    const changeLanguageHandler = lng => {
+        i18n.changeLanguage(lng);
+        // if (lng === 'hy') {
+        //     setLanguage('Հայերեն')
+        // } else {
+        //     setLanguage('Русский')
+        // }
     }
 
     return (
@@ -104,20 +116,20 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
-                            <Link className="nav-link text-dark" to="/">Գլխավոր <span
+                            <Link className="nav-link text-dark" to="/">{t('home_link')}<span
                                 className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/courses">Դասընթացներ</Link>
+                            <Link className="nav-link text-dark" to="/courses">{t('courses_link')}</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/about">Մեր մասին</Link>
+                            <Link className="nav-link text-dark" to="/about">{t('about_link')}</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/blog">Բլոգ</Link>
+                            <Link className="nav-link text-dark" to="/blog">{t('blog_link')}</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-dark" to="/contact">Կապ</Link>
+                            <Link className="nav-link text-dark" to="/contact">{t('contact_link')}</Link>
                         </li>
                     </ul>
                     {/*search field*/}
@@ -158,17 +170,20 @@ const NavBar = () => {
                                 <span id="am-lang"
                                       className="por-lang chosen"
                                       style={{backgroundImage: "url('assets/languages/hy.png')"}}
+                                      onClick={() => changeLanguageHandler('hy')}
                                 />
                             </Link>
                             <Link to="#">
                                 <span id="en-lang"
                                       className="eng-lang"
                                       style={{backgroundImage: "url('assets/languages/usa.png')"}}
+                                      onClick={() => changeLanguageHandler('en')}
                                 />
                             </Link>
                             <Link to="#">
                                 <span id="ru-lang" className="esp-lang"
                                       style={{backgroundImage: "url('assets/languages/ru.png')"}}
+                                      onClick={() => changeLanguageHandler('ru')}
                                 />
                             </Link>
                         </div>
